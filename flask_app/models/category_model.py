@@ -1,4 +1,4 @@
-from flask_app.config.mysqlconnections import connectToMySQL
+from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import DB
 from flask import flash
 

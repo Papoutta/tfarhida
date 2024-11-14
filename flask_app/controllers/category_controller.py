@@ -3,8 +3,8 @@ from flask import render_template, redirect, request, session, flash # type: ign
 from flask_app.models.category_model import Category
 
 
-@app.route('/')
-def index():
+@app.route('/admin')
+def index_admin():
     return redirect('/admin')
 
 #dashboard route
