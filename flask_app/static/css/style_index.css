@@ -1,0 +1,190 @@
+*{margin:0px;
+padding: 0px;}
+body {
+    height: 100%;
+    overflow: hidden;
+    width: 100% !important;
+    box-sizing: border-box;
+
+  }
+  
+  
+  
+  .backRight {
+    position: absolute;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: #fbfbfc url(StockCake-Friends\ sharing\ pizza_1731516162.jpg);
+    background-size: cover;
+    background-position: 50% 50%;
+  }
+  
+  .backLeft {
+    position: absolute;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: #e74c3c url(camping-friends-toasting-stockcake.jpg);
+    background-size: cover;
+    background-position: 50% 50%;
+  }
+  
+  #back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -999;
+  }
+  
+  #slideBox {
+    width: 50%;
+    max-height: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin-left: 50%;
+    position: absolute; 
+   
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }
+  .topLayer {
+    width: 200%;
+    height: 100%;
+    position: relative;
+    left: 0;
+    left: -100%;
+  }
+  
+  .left {
+    width: 50%;
+    height: 100%;
+    background: #ffffff;
+    left: 0;
+    position: absolute;
+  }
+  
+  .right {
+    width: 50%;
+    height: 100%;
+    background: #f9f9f9;
+    right: 0;
+    position: absolute;
+  }
+  /**********************content********************************/
+  
+     .content1 { 
+      width: 50%; 
+      margin: 0% auto; 
+     position: relative;
+      left: 40px; top: 25%;
+
+     
+    }   
+    .content{
+      width: 80%; 
+      margin: 0% auto; 
+      position: relative;
+      top: 10%;
+    }
+
+  
+  
+  .welcome{ 
+    text-align: center; 
+    padding: 10px;
+  }
+  .from1{
+    display: flex; 
+    flex-direction: column; 
+    font-family: "Adamina";
+    gap: 20px;
+  }
+  .form-group,.button
+  { 
+    display: flex;
+    gap: 10px;
+    flex-direction: column;  
+    
+
+  } 
+  
+  .content1 h2{
+    font-weight: 300px;
+    font-size: 50px;  
+    font-family: 'Noto Serif';
+  
+  }  
+  .create h2{ 
+    font-weight: 300px;
+    font-size: 50px;  
+    font-family: 'Noto Serif';  
+    padding: 10px; 
+
+  }
+  p{ 
+    font-family: "Abel"; 
+    font-size: 13px; 
+  }
+  
+  button { 
+    background: #0e0d0d;
+    padding: 10px 16px;
+    width: auto;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.1);
+    border: 0;
+    transition: all 0.25s;
+  }
+  
+  button:hover {
+    
+    box-shadow: 0 4px 7px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.1); 
+    background: #eee; 
+    color: #030303;
+    
+  }
+  
+  .off { 
+    border-radius: 10px;
+  } 
+  .login { 
+    border-radius: 10px;
+  }
+  .right .off:hover {
+    background: #eee;
+  
+    box-shadow: none;
+  }
+  .left .off:hover {
+    box-shadow: none;
+    color: #030303;
+    background: #363A3D;
+  }
+  input {
+    background: transparent;
+    border: 2px solid black;
+    font-size: 14px;
+    color: #959595;
+    padding: 8px 0;
+    border-radius: 5px;
+  
+  }
+  /************************create***************************/ 
+  .create{ 
+   
+    text-align: center;
+    
+  } 
+ 
+  .checkbox{ 
+    font-size: 150%; 
+    font-family: cursive;
+    display: flex; 
+    flex-direction: column; 
+ 
+  }  
+  img{  
+    margin-left: -60%;
+  }

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+  <div id="back">
+    <div class="backRight"></div>
+    <div class="backLeft"></div>
+  </div>
+<!-- create -->
+  <div id="slideBox">
+    <div class="topLayer">
+      <div class="left">
+        <div class="content">
+
+          <form method="post" class="create"  onsubmit="return false;">
+            <h2>Wlecome To Tfarhida</h2>
+            <div class="form-group">
+              <input type="text" placeholder="fisrt name * ">
+              <input type="text" placeholder="Last name *">
+              <input type="text" placeholder="email*">
+              <input type="date" placeholder="Date of Birth*">
+              <input type="tel" placeholder="Phone numbre *">
+              <div class="d-flex justify-content-between">
+
+                <div class="border-2 border-black border d-flex gap-5 rounded w-100">
+                  <label for="" class="">Gender</label>
+                  <span class="d-flex gap-4">
+                    <span><input type="radio"><label for="">Woman</label></span>
+                    <span>
+                      <input type="radio"><label for="">main</label></span>
+                  </span>
+                </div>
+                <button type="button" class="btn btn-dark w-25" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                  Interest 🔥
+                </button>
+              </div>
+              <input type="password" placeholder="password *">
+              <input type="password" placeholder="confirm password*">
+              <input type="file" class="form-control border-dark border-2" id="inputGroupFile02">
+              <div>
+                <span><img src="{{ url_for('static', filename='img/télécharger.jpeg') }}">
+                </span>
+                <span>
+                  <input type="checkbox" name="valide" id="valide"> <label for="" class="">I agree to the of
+                  </label></span>
+              </div>
+            </div>
+            <div class="d-flex flex-column gap-3">
+              <button id="goLeft" class="rounded">Login</button>
+              <button class="rounded">Create</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+
+
+      <!-- loing  -->
+      <div class="right">
+        <div class="content1">
+          <div class="welcome">
+            <h2>Welcome Bock </h2>
+            <p>Enter your email and password to access your account </p>
+          </div>
+          <form method="post" class="from1" onsubmit="return false;">
+            <div class="form-group">
+              <label for="username" class="form-label">Email </label>
+              <input type="text" placeholder="Enter your Email *">
+              <label for="userpasword" class="form-label">Password </label>
+              <input type="password" placeholder="Enter your password *">
+
+            </div>
+            <div class="button">
+              <button id="goRight" class="off">Create an account</button>
+              <button id="login" class="off" type="submit">Sing Up </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title " id="staticBackdropLabel">Interest</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="checkbox">
+            <div>
+              <input type="checkbox" name="cinema" id="Cinema" value="cinema">
+              <label for="">Cinema</label>
+            </div>
+            <div>
+              <input type="checkbox" name="camping" id="camping" value="camping">
+              <label for="">Camping</label>
+            </div>
+            <div>
+              <input type="checkbox" name="cofee" id="cofee" value="cofee">
+              <label for="">Cofee</label>
+            </div>
+            <div>
+              <input type="checkbox" name="beach" id="beach" value="beach">
+              <label for="">Beach</label>
+            </div>
+            <div>
+              <input type="checkbox" name="bowling" id="bowling" value="bowling">
+              <label for="">Bowling</label>
+            </div>
+            <div>
+              <input type="checkbox" name="basket" id="basket" value="basket">
+              <label for="">Basket</label>
+            </div>
+            <div>
+              <input type="checkbox" name="foot" id="foot" value="foot">
+              <label for="">Foot</label>
+            </div>
+            <div>
+              <input type="checkbox" name="walking" id="walking" value="walking">
+              <label for="">walking</label>
+            </div>
+            <div>
+              <input type="checkbox" name="footing" id="footing" value="footing">
+              <label for="">Footing</label>
+            </div>
+            <div>
+              <input type="checkbox" name="kayek" id="kayek" value="kayek">
+              <label for="">kayak</label>
+            </div>
+            <div>
+              <input type="checkbox" name="padel" id="padel" value="padel">
+              <label for="">Padel</label>
+            </div>
+            <div>
+              <input type="checkbox" name="fishing" id="fishing" value="fishing">
+              <label for="">fishing</label>
+            </div>
+            <div>
+              <input type="checkbox" name="dancing" id="dancing" value="dancing">
+              <label for="">Dancing</label>
+            </div>
+            <div>
+              <input type="checkbox" name="eating" id="eating" value="eating">
+              <label for="">Eating</label>
+            </div>
+            <div>
+              <input type="checkbox" name="skaing" id="skaing" value="skaing">
+              <label for="">Skaing</label>
+            </div>
+            <div>
+              <input type="checkbox" name="Escaperoom" id="Escaperoom" value="Escaperoom">
+              <label for="">Escaperoom</label>
+            </div>
+            <div>
+              <input type="checkbox" name="laser" id="laser" value="laser">
+              <label for="">Laser</label>
+            </div>
+            <div>
+              <input type="checkbox" name="game" id="game" value="game">
+              <label for="">Game</label>
+            </div>
+            <div>
+              <input type="checkbox" name="praty" id="praty" value="praty">
+              <label for="">Praty</label>
+            </div>
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-dark">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script type="text/javascript" src="{{ url_for('static', filename='js/move.js') }}"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+</body>
+
+</html>
