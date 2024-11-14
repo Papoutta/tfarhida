@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" 
+    type="text/css" 
+    href="{{ url_for('static', filename='css/style_home.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='img/Capture.PNG') }}" alt="">
+            <h1>TFARHIDA</h1>
+        </div>
+        <div class="buts">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about_us">About us</a></li>
+                <li><a href="#contact_us">Contact us</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+            </ul>
+        </div>
+        <div class="buttonn">
+            <button>Login</button>
+            <button>Registration</button>
+        </div>
+    </div>
+
+
+    <div id="home" class="second_container">
+        <img src="{{ url_for('static', filename='img/frirst_one.jpg') }}" alt="">
+        <h2>
+        FEDED OOU DHARBEK EL GLGA?
+            <br>
+        TFARHIDA ANDHA EL HAL LIK!
+        </h2>
+    </div>
+
+    
+    <div id="about_us" class="third_container">
+        <div>
+            <h4>
+                Welcome to TFARHIDA, the platform dedicated to bringing people <br>
+                together through shared passions and interests. We believe that <br>
+                meaningful connections are created through shared experiences, and our goal <br>
+                is to make it easy for you to find and organize activities with like-minded individuals. <br>
+                Whether you’re looking to explore new hobbies, expand your social circle,<br>
+                or simply enjoy a favorite activity with others, <br>
+                TFARHIDA is here to connect you with people who share your interests.
+            </h4>
+        </div>
+        <div class="follow">
+            <img src="{{ url_for('static', filename='img/5k.PNG') }}" alt="">
+            <h1>Follow</h1>
+        </div>
+    </div>
+
+    <form action="https://api.web3forms.com/submit" method="POST">       
+     <input type="hidden" name="access_key" value="187d7201-a7fe-41dc-a23a-9afe5fa0586b">
+        <div id="contact_us" class="contact_us">
+            <div class="con">
+                <h2>Contact Us</h2>
+                <div class="input-container">
+                    <div class="input-group">
+                        <input type="text" name="email_or_name" required>
+                        <label>Your username or email</label>
+                        <span class="underline"></span>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" name="problem" required>
+                        <label>Problem</label>
+                        <span class="underline"></span>
+                    </div>
+                </div>
+                <button class="ret" type="submit">SUBMIT</button>
+            </div>
+        </div>
+    </form>
+
+
+    <div id="reviews" class="fourth_container">
+        <!-- First row of comments -->
+        <div class="row">
+            <div class="comment">
+                <div class="who">
+                    <img class="ayy" src="{{ url_for('static', filename='img/5k.PNG') }}" alt="">
+                    <p>il mayesamech</p>
+                    <img class="star" src="{{ url_for('static', filename='img/star.PNG') }}" alt="">
+                </div>
+                <p>so cool!</p>
+            </div>
+            <div class="comment">
+                <div class="who">
+                    <img class="ayy" src="{{ url_for('static', filename='img/5k.PNG') }}" alt="">
+                    <p>hamoudi</p>
+                    <img class="star" src="{{ url_for('static', filename='img/star.PNG') }}" alt="">
+                </div>
+                <p>unusual experience but u can trust it.</p>
+            </div>
+            <div class="comment">
+                <div class="who">
+                    <img class="ayy" src="{{ url_for('static', filename='img/5k.PNG') }}" alt="">
+                    <p>meria ben mahmoud</p>
+                    <img class="star" src="{{ url_for('static', filename='img/star.PNG') }}" alt="">
+                </div>
+                <p>very good experience bro</p>
+            </div>
+            <div class="comment">
+                <div class="who">
+                    <img class="ayy" src=src="{{ url_for('static', filename='img/5k.PNG') }}" alt="">
+                    <p>wild salouha</p>
+                    <img class="star" src="{{ url_for('static', filename='img/star.PNG') }}" alt="">
+                </div>
+                <p>i was nice, funny with some wonderful people</p>
+            </div>
+        </div>
+    
+        <!-- Second row of comments -->
+        <div class="row">
+            <div class="comment">
+                <div class="who">
+                    <img class="ayy" src="{{ url_for('static', filename='img/5k.PNG') }}" alt="">
+                    <p>il mayesamech</p>
+                    <img class="star" src="{{ url_for('static', filename='img/star.PNG') }}" alt="">
+                </div>
+                <p>so cool!</p>
+            </div>
+            <div class="comment">
+                <div class="who">
+                    <img class="ayy" src="{{ url_for('static', filename='img/5k.PNG') }}" alt="">
+                    <p>hamoudi</p>
+                    <img class="star" src="{{ url_for('static', filename='img/star.PNG') }}" alt="">
+                </div>
+                <p>unusual experience but u can trust it.</p>
+            </div>
+            <div class="comment">
+                <div class="who">
+                    <img class="ayy" src="{{ url_for('static', filename='img/5k.PNG') }}" alt="">
+                    <p>il mayesamech</p>
+                    <img class="star" src="{{ url_for('static', filename='img/star.PNG') }}" alt="">
+                </div>
+                <p>so cool!</p>
+            </div>
+            <div class="comment">
+                <div class="who">
+                    <img class="ayy" src="{{ url_for('static', filename='img/5k.PNG') }}" alt="">
+                    <p>hamoudi</p>
+                    <img class="star" src="{{ url_for('static', filename='img/star.PNG') }}" alt="">
+                </div>
+                <p>unusual experience but u can trust it.</p>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="slideshow">
+        <img id="slideshow-image" src="{{ url_for('static', filename='img/lastt.jpg') }}" alt="Slideshow Image"> <!-- this its hshould be do with js, avery 3 second switch to anather photo, 3 times then bach to the first photo -->
+    </div>
+
+
+    <div class="last_container">
+        <div>
+            <p>TUNIS, TUNISIA | phone: 666-666-666 | email:tfarhida@gmail.com</p>
+        </div>
+        <div>
+            <p>Copytight © 2024 Outdoor Adventure</p>
+        </div>
+           
+        
+            
+        
+
+    </div>
+    
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/my_script.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/my_script1.js') }}"></script>
+
+</body>
+</html>
