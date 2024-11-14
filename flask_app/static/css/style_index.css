@@ -1,12 +1,13 @@
 *{margin:0px;
-padding: 0px;}
-body {
+padding: 0px;
+}
+/* body {
     height: 100%;
     overflow: hidden;
     width: 100% !important;
     box-sizing: border-box;
 
-  }
+  } */
   
   
   
@@ -15,7 +16,7 @@ body {
     right: 0;
     width: 50%;
     height: 100%;
-    background: #fbfbfc url(StockCake-Friends\ sharing\ pizza_1731516162.jpg);
+    background: #fbfbfc url(../img/StockCake-Friends.jpg);
     background-size: cover;
     background-position: 50% 50%;
   }
@@ -25,7 +26,7 @@ body {
     left: 0;
     width: 50%;
     height: 100%;
-    background: #e74c3c url(camping-friends-toasting-stockcake.jpg);
+    background: #e74c3c url(../img/camping-friends-toasting-stockcake.jpg);
     background-size: cover;
     background-position: 50% 50%;
   }
@@ -167,11 +168,19 @@ body {
     border: 2px solid black;
     font-size: 14px;
     color: #959595;
-    padding: 8px 0;
+    padding: 4px ;
     border-radius: 5px;
   
   }
-  /************************create***************************/ 
+  /************************create***************************/  
+  content1, .content {
+    overflow-y: auto; 
+    max-height: 80vh; 
+    padding-right: 10px;
+    scrollbar-width: thin; 
+    scrollbar-color: #fdfdfd #fffdfd; 
+} 
+
   .create{ 
    
     text-align: center;
@@ -186,5 +195,6 @@ body {
  
   }  
   img{  
-    margin-left: -60%;
+    margin-left: -60%; 
+
   }
