@@ -24,3 +24,25 @@ class Category :
         for row in results:
             all_categories.append(cls(row))
         return all_categories
+    
+    @classmethod
+    def get_by_category(cls, data):
+        query = "SELECT *FROM categories WHERE category_name = %(category_name)s;"
+        result = connectToMySQL(DB).query_db(query , data)
+        if result :
+            return cls(result[0])
+        return False
+
+
+
+
+    @staticmethod
+    def validate(data):
+        is_valid=True
+        if len(data['category_name'])<3:
+            is_valid=False
+            flash(" Category name is too short", 'category_name')
+        elif Category.get_by_category({"category_name": data['category_name']}):
+            flash("category already taken", "category_name")
+            is_valid = False
+        return is_valid

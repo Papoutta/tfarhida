@@ -48,10 +48,13 @@
                                             <div class="col-12">
                                                 <div class="mb-3">
                                                     <label for="name" class="form-label">Category name</label>
-                                                    <input type="text" class="form-control" id="name" name="category_name" placeholder="Text here" required>
+                                                    {% for message in get_flashed_messages(category_filter=['category_name']) %}
+                                                        <p class="text-danger small">{{message}}</p>
+                                                    {% endfor %}
+                                                    <input type="text" class="form-control" id="name" name="category_name" placeholder="Text here">
                                                 </div>
                                                 <div class="text-end">
-                                                    <input type="submit" class="btn btn-outline-primary" value="Submit" data-bs-dismiss="modal">
+                                                    <input type="submit" class="btn btn-outline-primary" value="Submit">
                                                 </div>
                                             </div>
                                         </form>
