@@ -1,0 +1,138 @@
+/* boddy */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f8f8f8;
+}
+
+/* navbar for the header and navigation */
+.navbar {
+    display: flex;
+    width: 97.9%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.89);
+    position: fixed;
+    z-index: 1000;
+    border-radius: 40px;
+}
+
+.navbar h1 {
+    font-size: 1.5em;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar ul li {
+    cursor: pointer;
+}
+.navbar a {
+    color: gray;
+    text-decoration: none;
+    padding: 0.5em 1em;
+    transition: background-color 0.3s ease;
+    border-radius: 20px;
+  }
+.navbar a:hover {
+    background-color: #555;
+    border-radius: 20px;
+  }
+
+.navbar button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    background-color: #ea5d29;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.logo img {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+/* container */
+.container {
+    text-align: center;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-container {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    width: 300px;
+    background-color: #fff;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-size: 0.9em;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+}
+
+label span {
+    color: red;
+}
+
+input[type="text"],
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+}
+
+textarea {
+    resize: none;
+    height: 80px;
+}
+
+.char-count {
+    font-size: 0.8em;
+    color: #666;
+    text-align: right;
+    padding-top: 5px;
+}

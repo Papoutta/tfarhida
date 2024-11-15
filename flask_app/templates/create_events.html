@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_create_event.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='img/Capture.PNG') }}" alt="">
+            <h1>TFARHIDA</h1>
+        </div>
+        <div class="buts">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about_us">About us</a></li>
+                <li><a href="#contact_us">Contact us</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+            </ul>
+        </div>
+        <div class="buttonn">
+            <button>Login</button>
+            <button>Registration</button>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Create an Event</h1>
+        <div class="form-container">
+            <form action="">
+                <label for="event-type">Type of Event <span>*</span></label>
+                <select name="" id="event-type" required>
+                    <option value="" disabled selected>Select an item</option>
+                </select>
+
+                <label for="event-name">Name of Event <samp>*</samp></label>
+                <input type="text" id="event-name" placeholder="Text" required>
+
+                <label for="event-place">Place of event <span>*</span></label>
+                <input type="text" id="event-place" placeholder="Text" required>
+
+                <label for="event-time">Time of event <span>*</span></label>
+                <input type="date" id="event-time" required>
+
+                <label for="addition-info">Additional Information</label>
+                <textarea name="addition-info" maxlength="280" placeholder="Text">
+
+                </textarea>
+                <div class="char-count">0 : 280</div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
