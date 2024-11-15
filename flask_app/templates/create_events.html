@@ -20,9 +20,9 @@
                 <li><a href="#reviews">Reviews</a></li>
             </ul>
         </div>
-        <div class="buttonn">
-            <button>Login</button>
-            <button>Registration</button>
+        <div class="right_icons">
+            <img src="notification.png" alt="Notifications" class="notification-icon">
+            <img src="logo.png" alt="Profile" class="profile-icon">
         </div>
     </div>
     <div class="container">
@@ -30,24 +30,37 @@
         <div class="form-container">
             <form action="">
                 <label for="event-type">Type of Event <span>*</span></label>
-                <select name="" id="event-type" required>
+                <select name="" id="event-type" placeholder="Select an item" required>
                     <option value="" disabled selected>Select an item</option>
+                    <option value="">Conferences</option>
+                    <option value="">Trade Shows</option>
+                    <option value="">Networking Events</option>
+                    <option value="">Workshops</option>
+                    <option value="">Team Building Events</option>
+                    <option value="">Product Launches</option>
+                    <option value="">Charity Events</option>
+                    <option value="">Internal Corporate Events</option>
+                    <option value="">Round Tables</option>
+                    <option value="">Company Parties</option>
                 </select>
 
-                <label for="event-name">Name of Event <samp>*</samp></label>
+                <label for="event-name">Name of Event <span>*</span></label>
                 <input type="text" id="event-name" placeholder="Text" required>
 
-                <label for="event-place">Place of event <span>*</span></label>
+                <label for="event-place">Place of Event <span>*</span></label>
                 <input type="text" id="event-place" placeholder="Text" required>
 
-                <label for="event-time">Time of event <span>*</span></label>
+                <label for="event-time">Time of Event <span>*</span></label>
                 <input type="date" id="event-time" required>
 
                 <label for="addition-info">Additional Information</label>
                 <textarea name="addition-info" maxlength="280" placeholder="Text">
-
+                    
                 </textarea>
-                <div class="char-count">0 : 280</div>
+                <div class="char-count">0 / 200</div>
+                <div>
+                    <button>Create</button>
+                </div>
             </form>
         </div>
     </div>

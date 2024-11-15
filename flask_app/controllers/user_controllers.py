@@ -3,9 +3,10 @@ from flask import render_template,redirect,request,session,flash
 from flask_app.models.user_models import User 
 from flask_bcrypt import Bcrypt  
 bcrypt=Bcrypt(app)
-@app.route("/") 
+@app.route("/nourhene") 
 def index():
-    return render_template("index.html") 
+    return render_template("index.html")  
+@app.route("/users/create",methods=["POST"]) 
 def register():
     pw=bcrypt.generate_password_hash(request.form["password"])  
     data={ 
@@ -14,7 +15,7 @@ def register():
     } 
     user_id=User.register(data) 
     session["user_id"]=user_id 
-    return redirect("/home.html ") 
+    return redirect("/home") 
 
 
 

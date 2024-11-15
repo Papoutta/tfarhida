@@ -1,12 +1,16 @@
 // Array of image sources
-const photos = ["first_one.jpg", "second_one.jpg", "third_one.jpg", "fourth_one.jpg"];
+const photos = [
+    "/../img/3018022022143229.jpg') ",
+    "/../img/second_one.jpg') ",
+    "/../img/third_one.jpg')",
+    "/../img/fourth_one.jpg')"
+];
 let Index = 0;
 
 function changeImage() {
     const imgElement = document.querySelector(".second_container img");
     const h2Element = document.querySelector(".second_container h2");
 
-    // Remove the current animation class to reset it
 
     // Wait a bit before adding it back to trigger the animation again
     setTimeout(() => {
@@ -22,5 +26,7 @@ function changeImage() {
     }, 100); // Slight delay before applying the animation class
 }
 
-// Change the image every 5 seconds (5000 milliseconds)
-setInterval(changeImage, 4000);
+// Change the image every 4 seconds (5000 milliseconds)
+// onload.apply(setInterval(changeImage, 4000))
+setInterval(changeImage, 4000)
+

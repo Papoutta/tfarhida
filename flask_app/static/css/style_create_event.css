@@ -1,20 +1,22 @@
-/* boddy */
+/* Basic reset and setup */
 * {
-    margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f8f8f8;
+    background-color: #eeeeee;
+    color: #333;
+    padding: 20px;
 }
 
-/* navbar for the header and navigation */
+/* smooth */
+html {
+    scroll-behavior: smooth;
+  }
+
+/* Container for the header and navigation */
 .navbar {
     display: flex;
     width: 97.9%;
@@ -62,9 +64,7 @@ body {
     background-color: #ea5d29;
     color: white;
     cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
     
 }
 .logo{
@@ -78,9 +78,27 @@ body {
     width: 30px;
     height: 30px;
 }
+.buttonn {
+    display: flex;
+    gap: 10px;
+}
+.right_icons{
+    display: flex;
+    gap: 10px;
+
+}
+.right_icons img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
 /* container */
 .container {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding-top: 100px;
 }
 
 h1 {
@@ -91,8 +109,9 @@ h1 {
 
 .form-container {
     border: 2px dashed #ccc;
+    border-radius: 10px;
     padding: 20px;
-    width: 300px;
+    width: 350px;
     background-color: #fff;
 }
 
@@ -105,8 +124,7 @@ form {
 label {
     font-size: 0.9em;
     color: #333;
-    display: flex;
-    justify-content: space-between;
+
 }
 
 label span {
@@ -135,4 +153,24 @@ textarea {
     color: #666;
     text-align: right;
     padding-top: 5px;
+}
+button {
+    background-color: gainsboro;
+    color: black;
+    border: black;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+button:hover {
+    background-color: #818181;
+    transform: scale(1.05); /* Button scaling effect */
+}
+
+/* Button Press Animation */
+button:active {
+    transform: scale(0.95);
 }

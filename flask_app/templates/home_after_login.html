@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" 
+    type="text/css" 
+    href="{{ url_for('static', filename='css/style_home_after_login.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='img/logo.PNG') }}" alt="">
+            <h1>TFARHIDA</h1>
+        </div>
+        <div class="buts">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about_us">About us</a></li>
+                <li><a href="#contact_us">Contact us</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><button href="/create_event" class="create-button">Create</button></li>
+            </ul>
+        </div>
+        <div class="right_icons">
+            <img src="notification.png" alt="Notifications" class="notification-icon">
+            <img src="logo.png" alt="Profile" class="profile-icon">
+        </div>
+    </div>
+
+    <div id="home" class="second_container">
+        <img src="{{ url_for('static', filename='img/frirst_one.PNG') }}" alt="">
+        <h2>
+        FEDED OOU DHARBEK EL GLGA?
+            <br>
+        TFARHIDA ANDHA EL HAL LIK!
+        </h2>
+    </div>
+    <div class="story">
+        <div>
+            <h3>STORIES</h3>
+        </div>
+        <div class="storys">
+            <img src="{{ url_for('static', filename='img/cinema.PNG') }}" alt="">
+            <img src="{{ url_for('static', filename='img/ZH-88.PNG') }}" alt="">
+            <img src="{{ url_for('static', filename='img/second_one.PNG') }}" alt="">
+            <img src="{{ url_for('static', filename='img/Capture.PNG') }}" alt="">
+            <img src="{{ url_for('static', filename='img/friendship-day_world-friendship-day.PNG') }}" alt="">
+            <img src="{{ url_for('static', filename='img/3018022022143229.PNG') }}" alt="">
+            <img src="{{ url_for('static', filename='img/second_one.PNG') }}" alt="">
+            <img src="{{ url_for('static', filename='img/third_one.PNG') }}" alt="">
+            <img src="{{ url_for('static', filename='img/fourth_one.PNG') }}" alt="">
+        </div>
+    </div>
+
+    <div class="events">
+        <div class="event">
+            <div class="event-header">
+                <h4>Event 1</h4>
+                <button class="more-options">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <img src="{{ url_for('static', filename='img/friendship-day_world-friendship-day.jpg') }}" alt="">
+            <div class="event-footer">
+                <div class="user">
+                    <img src="{{ url_for('static', filename='img/logo.PNG') }}" alt="">
+                    <h3>user name 1</h3>
+                </div>
+                <div class="likes">
+                    <button class="join-btn">Ask to Join</button>
+                    <div class="mamou">
+                        <h4>61</h4>
+                        <img src="{{ url_for('static', filename='img/heart.PNG') }}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/my_script1.js') }}"></script>
+</body>
+</html>
