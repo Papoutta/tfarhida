@@ -9,7 +9,7 @@
 body {
     background-color: #eeeeee;
     color: #333;
-    padding: 20px;
+
 }
 
 /* smooth */
@@ -20,14 +20,14 @@ html {
 /* Container for the header and navigation */
 .container {
     display: flex;
-    width: 97.9%;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
     background-color: rgba(255, 255, 255, 0.89);
     position: fixed;
     z-index: 1000;
-    border-radius: 40px;
+
 }
 
 .container h1 {
@@ -140,10 +140,16 @@ html {
 /* Button styling */
 .buttonn {
     display: flex;
-    gap: 10px;
+    gap: 10px; 
+    
 }
-
-
+/* .buttonn #bu{
+    width: 100px;
+} */
+.buttonn #a{  
+    text-decoration: none;
+    color: rgb(252, 252, 252);
+}
 /* Third container with description and follow section */
 .third_container {
     width: 100%;

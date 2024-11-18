@@ -7,9 +7,21 @@ padding: 0px;
     width: 100% !important;
     box-sizing: border-box;
 
-  } */
+  } */ 
+ 
+  .img
+  {  
+    position: absolute;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: #e74c3c url(../img/stock.jpg);
+    background-size: cover;
+    background-position: 50% 50%;
+  }
   
-  
+
+  /****************************************************************/
   
   .backRight {
     position: absolute;
@@ -173,7 +185,7 @@ padding: 0px;
   
   }
   /************************create***************************/  
-  content1, .content {
+  .content1, .content {
     overflow-y: auto; 
     max-height: 80vh; 
     padding-right: 10px;
@@ -186,14 +198,35 @@ padding: 0px;
     text-align: center;
     
   } 
- 
+  .inter {  
+    
+    width: fit-content;   
+  
+    margin: auto;
+
+  
+  
+    
+  }
   .checkbox{ 
-    font-size: 150%; 
-    font-family: cursive;
-    display: flex; 
-    flex-direction: column; 
  
+    width: 50%;
+    height: 100%;
+    background: #f9f9f9;
+    right: 0;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    font-size:30px;
+
+
+
   }  
+
+  #choose { 
+    width: 1.5rem;
+    height: 1.5rem; 
+  }
   img{  
     margin-left: -60%; 
 

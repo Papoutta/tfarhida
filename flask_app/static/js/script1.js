@@ -1,9 +1,9 @@
 // Array of image sources
 const photos = [
-    "/../img/3018022022143229.jpg') ",
-    "/../img/second_one.jpg') ",
-    "/../img/third_one.jpg')",
-    "/../img/fourth_one.jpg')"
+    "static/img/3018022022143229.jpg",
+    "static/img/second_one.jpg",
+    "static/img/third_one.jpg",
+    "static/img/fourth_one.jpg"
 ];
 let Index = 0;
 
