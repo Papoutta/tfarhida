@@ -15,39 +15,61 @@
     <div class="backRight"></div>
     <div class="backLeft"></div>
   </div>
-<!-- create -->
+  <!-- create -->
   <div id="slideBox">
     <div class="topLayer">
       <div class="left">
         <div class="content">
-         
-          <form  action="/users/create"method="post" class="create"  onsubmit="return false;">
+          <form action="/users/create" method="post" class="create">
             <h2>Wlecome To Tfarhida</h2>
             <div class="form-group">
-              <input type="text"  placeholder="fisrt name * "  name="first_name">
-              <input type="text" placeholder="Last name *"name="last_name">
-              <input type="text" placeholder="email*"name="email">
-              <input type="date" placeholder="Date of Birth*"name="date">
-              <input type="tel" placeholder="Phone numbre *"name="phone_number">
-              <div class="d-flex justify-content-between">
-
+              <input type="text" placeholder="fisrt name * " name="first_name">
+              {% for message in get_flashed_messages(category_filter=['first_name'])%}
+              <p class="text-danger">{{message}}</p>
+              {%endfor%}
+              <input type="text" placeholder="Last name *" name="last_name">
+              {% for message in get_flashed_messages(category_filter=['last_name'])%}
+              <p class="text-danger">{{message}}</p>
+              {%endfor%}
+              <input type="text" placeholder="email*" name="email">
+              {% for message in get_flashed_messages(category_filter=['email'])%}
+              <p class="text-danger">{{message}}</p>
+              {%endfor%}
+              <input type="date" placeholder="Date of Birth*" name="date">
+              {% for message in get_flashed_messages(category_filter=['date'])%}
+              <p class="text-danger">{{message}}</p>
+              {%endfor%}
+              <input type="tel" placeholder="Phone numbre *" name="phone_number">
+              {% for message in get_flashed_messages(category_filter=['phone_number'])%}
+              <p class="text-danger">{{message}}</p>
+              {%endfor%}
+              
                 <div class="border-2 border-black border d-flex gap-5 rounded w-100">
                   <label for="" class="">Gender</label>
                   <span class="d-flex gap-4">
-                    <span><input type="radio"><label for=""name="gender">Woman</label></span>
+                    <span><input type="radio"  name="gender" checked value="1"><label for="">Woman</label></span>
                     <span>
-                      <input type="radio"><label for=""name="gender">main</label></span>
-                  </span>
-                </div>
-                <button type="button" class="btn btn-dark w-25" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                  Interest 🔥
-                </button>
+                      <input type="radio" name="gender" value="0"><label for="" >main</label></span> 
+
+                  </span> 
+                  {% for message in get_flashed_messages(category_filter=['gender'])%}
+                  <p class="text-danger">{{message}}</p>
+                  {%endfor%}
               </div>
               <input type="password" placeholder="password *" name="password">
-              <input type="password" placeholder="confirm password*" name="password-confirm">
+              {% for message in get_flashed_messages(category_filter=['password'])%}
+              <p class="text-danger">{{message}}</p>
+              {%endfor%}
+              <input type="password" placeholder="confirm password*" name="password_confirm">
+              {% for message in get_flashed_messages(category_filter=['password_confirm'])%}
+              <p class="text-danger">{{message}}</p>
+              {%endfor%}
               <input type="file" class="form-control border-dark border-2" name="photo" id="inputGroupFile02">
+              {% for message in get_flashed_messages(category_filter=['photo'])%}
+              <p class="text-danger">{{message}}</p>
+              {%endfor%}
               <div>
-                <span><img src="{{ url_for('static', filename='img/télécharger.jpeg') }}">
+                <span><img src="{{ url_for('static', filename='img/profile.jpeg') }}">
                 </span>
                 <span>
                   <input type="checkbox" name="valide" id="valide"> <label for="" class="">I agree to the of
@@ -56,9 +78,9 @@
             </div>
             <div class="d-flex flex-column gap-3">
               <button id="goLeft" class="rounded">Login</button>
-              <button class="rounded" type="submit">Create</button> 
-            </div> 
-            <input type="hidden" name="role" value="0" >
+              <button class="rounded" type="submit"> Interest 🔥</button> 
+            </div>
+            <input type="hidden" name="role" value="0">
           </form>
 
         </div>
@@ -75,9 +97,16 @@
           <form method="post" class="from1" onsubmit="return false;">
             <div class="form-group">
               <label for="username" class="form-label" name="email">Email </label>
+
               <input type="text" placeholder="Enter your Email *" name="email">
-              <label for="userpasword" class="form-label" >Password </label>
+              {% for message in get_flashed_messages(category_filter=['email'])%}
+              <p class="text-danger">{{message}}</p>
+              {%endfor%}
+              <label for="userpasword" class="form-label">Password </label>
               <input type="password" placeholder="Enter your password *" name="password">
+              {% for message in get_flashed_messages(category_filter=['password'])%}
+              <p class="text-danger">{{message}}</p>
+              {%endfor%}
             </div>
             <div class="button">
               <button id="goRight" class="off">Create an account</button>
@@ -88,104 +117,7 @@
       </div>
     </div>
   </div>
-
-
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title " id="staticBackdropLabel">Interest</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="checkbox">
-            <div>
-              <input type="checkbox" name="cinema" id="Cinema" value="cinema">
-              <label for="">Cinema</label>
-            </div>
-            <div>
-              <input type="checkbox" name="camping" id="camping" value="camping">
-              <label for="">Camping</label>
-            </div>
-            <div>
-              <input type="checkbox" name="cofee" id="cofee" value="cofee">
-              <label for="">Cofee</label>
-            </div>
-            <div>
-              <input type="checkbox" name="beach" id="beach" value="beach">
-              <label for="">Beach</label>
-            </div>
-            <div>
-              <input type="checkbox" name="bowling" id="bowling" value="bowling">
-              <label for="">Bowling</label>
-            </div>
-            <div>
-              <input type="checkbox" name="basket" id="basket" value="basket">
-              <label for="">Basket</label>
-            </div>
-            <div>
-              <input type="checkbox" name="foot" id="foot" value="foot">
-              <label for="">Foot</label>
-            </div>
-            <div>
-              <input type="checkbox" name="walking" id="walking" value="walking">
-              <label for="">walking</label>
-            </div>
-            <div>
-              <input type="checkbox" name="footing" id="footing" value="footing">
-              <label for="">Footing</label>
-            </div>
-            <div>
-              <input type="checkbox" name="kayek" id="kayek" value="kayek">
-              <label for="">kayak</label>
-            </div>
-            <div>
-              <input type="checkbox" name="padel" id="padel" value="padel">
-              <label for="">Padel</label>
-            </div>
-            <div>
-              <input type="checkbox" name="fishing" id="fishing" value="fishing">
-              <label for="">fishing</label>
-            </div>
-            <div>
-              <input type="checkbox" name="dancing" id="dancing" value="dancing">
-              <label for="">Dancing</label>
-            </div>
-            <div>
-              <input type="checkbox" name="eating" id="eating" value="eating">
-              <label for="">Eating</label>
-            </div>
-            <div>
-              <input type="checkbox" name="skaing" id="skaing" value="skaing">
-              <label for="">Skaing</label>
-            </div>
-            <div>
-              <input type="checkbox" name="Escaperoom" id="Escaperoom" value="Escaperoom">
-              <label for="">Escaperoom</label>
-            </div>
-            <div>
-              <input type="checkbox" name="laser" id="laser" value="laser">
-              <label for="">Laser</label>
-            </div>
-            <div>
-              <input type="checkbox" name="game" id="game" value="game">
-              <label for="">Game</label>
-            </div>
-            <div>
-              <input type="checkbox" name="praty" id="praty" value="praty">
-              <label for="">Praty</label>
-            </div>
-
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-dark">Submit</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  
 
 
 
