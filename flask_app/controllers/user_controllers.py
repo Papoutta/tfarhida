@@ -113,9 +113,6 @@ def home_after_login():
 #     return redirect("/") 
 
 ###########################################edit##############################################################################################
-@app.route('/edite_your_information')
-def edite_your_information():
-    return render_template('edit_your_information.html')
 
 
 

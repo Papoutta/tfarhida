@@ -32,9 +32,18 @@ class User:
     ########################
     @classmethod 
     def update(cls,data): 
-        query="update user set first_name=%(first_name)s,last_name=%(last_name)s,date=%(date)s,date=%(date)s,phone_number=%(phone_number)s ,photo=%(photo)s, gender=%(gender)s where id=%(id)s;"
+        query="update users set first_name=%(first_name)s,last_name=%(last_name)s,date=%(date)s,date=%(date)s,phone_number=%(phone_number)s ,photo=%(photo)s, gender=%(gender)s where id=%(id)s;"
         result=connectToMySQL(DB).query_db(query,data) 
         return result
+    ########################### 
+    @classmethod 
+    def get_user(cls,data):
+        query="select *from users  where id =%(id)s;"
+        result=connectToMySQL(DB).query_db(query,data) 
+        if result:
+            return cls(result[0]) 
+        return False  
+    
     ###########################
     @staticmethod
     def validate(data): 

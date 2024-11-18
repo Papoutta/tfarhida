@@ -54,9 +54,9 @@
                 <textarea name="additional_information" maxlength="280" placeholder="Text"></textarea>
                 <div class="char-count">0 / 200</div>  
                 <label for="" class="form-label"> Event's image</label>
-                <input type="file"  class="form-control" name="photo" id="">  
-                <img src="../static/img/Capture.PNG" alt="">
-                <div class="text-center">
+                <input type="file"  class="form-control"  name="photo" id="">  
+                <img src="{{ url_for('static', filename='img/' + .photo) }}" alt="Image" width="200">              
+                  <div class="text-center">
                     <button type="submit" >Create</button>
                 </div>
             </form>
