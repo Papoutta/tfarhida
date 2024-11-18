@@ -8,34 +8,35 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="nav mt-3">
+    <div class="nav mt-4 ms-3">
         <div class="logo">
             <img src="{{ url_for('static', filename='img/logo.PNG') }}" style="width: 30px;" alt="Profile" class="ms-2">
-            <h1>TFARHIDA</h1>
+            <h1 style="cursor: pointer;">TFARHIDA</h1>
         </div>
         <div class="buts">
-            <ul>
+            <ul style="align-items: center;">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#top_events">Top Events</a></li>
                 <li><a href="#categories">Categories</a></li>
                 <li><a href="#contacts">Contacts</a></li>
                 <li><a href="#create">Create an event</a></li> 
-                <img src="{{ url_for('static', filename='img/notification.PNG') }}" style="width: 30px; border-radius: 50%;" alt="Notifications" class="border">
-                <img src="{{ url_for('static', filename='img/télécharger.jpeg') }}" style="width: 30px; border-radius: 50%;" alt="Profile" class="border border">
+                <img  src="{{ url_for('static', filename='img/notification.PNG') }}" style="width: 30px; border-radius: 50%; cursor: pointer;" alt="Notifications" class="border">
+                <img src="{{ url_for('static', filename='img/télécharger.jpeg') }}" style="width: 30px; border-radius: 50%; cursor: pointer;" alt="Profile" class="border border">
             </ul>
         </div>
     </div>
     <div class="d-flex justify-content-center align-items-end" style="height: 250px; background-color: rosybrown;"></div> 
-    <div class="border border-black" style="width: 150px; height: 150px; border-radius: 50%; margin-top: -75px; margin-left : 45%">
-        <img style="width: 100%; border-radius: 50%" src="{{ url_for('static', filename='img/logo.PNG') }}"  alt="">
+    <div class="mb-3" style="width: 150px; height: 150px; border-radius: 50%; margin-top: -75px; margin-left : 45%">
+        <img class="border border-black" style="width: 100%; border-radius: 50%" src="{{ url_for('static', filename='img/télécharger.jpeg') }}"  alt="">
     </div>
-    <div class="container">
+    <h1 class="text-center">Farouk Ghezal</h1>
+    <div class="container mt-5">
         <div class="mt-4 d-flex flex align-items-center gap-4">
-            <h1>My interests :</h1>
+            <h1>Farouk's interests :</h1>
             <p class="m-0">List of the user's interests</p>
         </div>
         <div class="mt-4 d-flex flex align-items-center gap-4">
-            <h1>My events :</h1>
+            <h1>Farouk's events :</h1>
             <p class="m-0">List of the user's interests</p>
         </div>
     </div>
