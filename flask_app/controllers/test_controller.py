@@ -1,5 +1,4 @@
 from flask import Flask, flash, request, redirect, url_for, render_template
-import urllib.request
 import os
 from werkzeug.utils import secure_filename
 from flask_app import app
@@ -8,10 +7,7 @@ UPLOAD_FOLDER = os.path.join('flask_app', 'static', 'img')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
-# ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
-# app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-# app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
-
+# Vérifier si l'extension du fichier est autorisée
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
@@ -31,7 +27,6 @@ def upload_image():
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        #print('upload_image filename: ' + filename)
         flash('Image successfully uploaded and displayed below')
         return render_template('test.html', filename=filename)
     else:
@@ -40,5 +35,4 @@ def upload_image():
 
 @app.route('/display/<filename>')
 def display_image(filename):
-    #print('display_image filename: ' + filename)
     return redirect(url_for('static', filename='img/' + filename), code=301)

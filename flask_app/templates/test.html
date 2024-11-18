@@ -1,41 +1,73 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Python Flask Upload and display image</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />        
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Flask Upload and Display Image</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 <body>
-<p><h1 align="center">Python Flask Upload and display image</h1></p>
-<div class="container">
-<div class="row">
-    <h2>Select a file to upload</h2>
-    <p>
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-            </ul>
-            {% endif %}
-        {% endwith %}
-    </p>
-    {% if filename %}
-        <div>
-            <img src="{{ url_for('display_image', filename=filename) }}">
-        </div>
-    {% endif %}
-    <form method="post" action="/test" enctype="multipart/form-data">
-        <dl>
+    <h1 align="center">Python Flask Upload and Display Image</h1>
+    <div class="container">
+        <div class="row">
+            <h2>Select a file to upload</h2>
             <p>
-                <input type="file" name="file" class="form-control" autocomplete="off" required>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                {% endwith %}
             </p>
-        </dl>
-        <p>
-            <input type="submit" value="Submit" class="btn btn-info">
-        </p>
-    </form>
-</div>
-</div>
+
+            <!-- Afficher l'image après le téléchargement -->
+            {% if filename %}
+                <div class="img-container" style="text-align:center;">
+                    <img src="{{ url_for('static', filename='img/' + filename) }}" alt="Uploaded Image" class="img-thumbnail">
+                </div>
+            {% endif %}
+
+            <!-- Formulaire d'upload avec prévisualisation -->
+            <form method="post" action="/test" enctype="multipart/form-data">
+                <div class="form-group">
+                    <input type="file" name="file" class="form-control" id="fileInput" onchange="previewImage(event)" autocomplete="off" required>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Upload Image" class="btn btn-info">
+                </div>
+            </form>
+
+            <!-- Prévisualisation de l'image -->
+            <div id="imagePreviewContainer" style="text-align:center; display:none;">
+                <h3>Preview:</h3>
+                <img id="imagePreview" src="" alt="Image Preview" class="img-thumbnail" style="max-width: 300px;"/>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Fonction pour afficher l'aperçu de l'image avant le téléchargement
+        function previewImage(event) {
+            var file = event.target.files[0];  // Sélection du fichier
+            var reader = new FileReader();
+
+            // Lorsque le fichier est chargé, afficher l'aperçu
+            reader.onload = function(e) {
+                var preview = document.getElementById('imagePreview');
+                var previewContainer = document.getElementById('imagePreviewContainer');
+                preview.src = e.target.result;
+                previewContainer.style.display = 'block';  // Afficher le conteneur d'aperçu
+            };
+
+            if (file) {
+                reader.readAsDataURL(file);  // Lire le fichier comme une URL de données
+            }
+        }
+    </script>
 </body>
 </html>
