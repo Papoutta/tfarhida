@@ -57,41 +57,41 @@
         </div>
     </div>
     <div class="events">
+        {%for event in user_events%}
         <div class="event">
             <div class="event-header">
-                <h4>Event 1</h4>
+                <h4>{{event.name}}</h4>
                 <button class="more-options">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
-            </div> 
-            {%for event in all_events %}
-            <div>
-                <div class="imgp">
-                    <img src="{{ url_for('static', filename='img/friendship-day_world-friendship-day.jpg') }}" id="img" alt="">
-                    <p>{{all_events.type}}</p> 
-                    <p>{{all_events.name}}</p> 
-                    <p>{{all_events.palce}}</p> 
-                    <p>{{all_events.date}}</p>  
-                    <p>{{all_events.additional_informtaion}}</p>
+            </div>
+
+            <img src="{{ url_for('static', filename='img/' + event.photo) }}" alt="">
+            <div class="event-footer">
+                <div class="user">
+                    <img src="{{ url_for('static', filename='img/logo.PNG') }}" alt="">
+                    <h3>{{event.poster.first_name}}</h3>
                 </div>
-                <div class="event-footer">
-                    <div class="user">
-                        <img src="{{ url_for('static', filename='img/logo.PNG') }}" alt="">
-                        <h3>{{user.first_name}}</h3>
-                    </div>
-                    <div class="likes">
-                        <button class="join-btn">Ask to Join</button>
-                        <div class="mamou">
-                            <h4>{{like.number}}</h4>
-                            <button><img src="{{ url_for('static', filename='img/heart.PNG') }}" alt=""></button>
-                        </div>
+                <div class="likes">
+                    <form action="/groups/add" method="post">
+                        <input type="hidden" value="{{event.id}}" name="events_id">
+                    <button class="join-btn">Ask to Join</button>
+                </form>
+                <form action="/groups/delete" method="post">
+                    <input type="hidden" value="{{event.id}}" name="events_id">
+                <button class="join-btn">Remove from group</button>
+            </form>
+                    <div class="mamou">
+                        <h4>61</h4>
+                        <img src="{{ url_for('static', filename='img/heart.PNG') }}" alt="">
                     </div>
                 </div>
             </div> 
             {%endfor%}
         </div>
+        {%endfor%}
     </div>
 
     <script type="text/javascript" src="{{ url_for('static', filename='js/my_script1.js') }}"></script>

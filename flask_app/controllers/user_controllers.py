@@ -3,6 +3,7 @@ from flask import render_template,redirect,request,session,flash
 from flask_app.models.user_models import User   
 from flask_app.models.category_model import Category 
 from flask_app.models.intersts_models import Interests
+from flask_app.models.create_event_model import Event
 from flask_bcrypt import Bcrypt  
 bcrypt=Bcrypt(app)
 @app.route('/')
@@ -21,6 +22,7 @@ def register():
             **request.form,  
             "password":pw
         } 
+        print(data,"**********************************")
         user_id=User.register(data)
         session["user_id"]=user_id
         return redirect("/choos")
@@ -36,15 +38,21 @@ def choos():
 ##############################
 @app.route("/choose",methods=["POST"])
 def choose(): 
- checked_options = request.form.getlist('choose')
- session["categories"]=checked_options
- for c in session["categories"]: 
-    choos=Interests.creat({"user_id":session['user_id'] ,"category_id":c}) 
+
+    checked_options = request.form.getlist('choose')
+    print("**********************")
+    print(checked_options)
+    #  session["categories"]=checked_options
+    for c in checked_options: 
+        print("==============================")
+        print(c)
+        Interests.creat({"user_id":session['user_id'] ,"category_id":int(c)}) 
     return redirect("/home" )
 ####################################HOME########################################################################################### 
 @app.route('/home')
 def home_after_login():
-    return render_template('home_after_login.html')
+    user_events = Event.get_user_events({"users_id":session['user_id'] })
+    return render_template('home_after_login.html',user_events = user_events)
 ################################################## login##################################################################################### 
 @app.route("/welcome",methods=["POST"])
 def login():
