@@ -28,14 +28,14 @@ def register():
         return redirect("/choos")
     else:  
         return redirect("/users") 
-######################################### INTERSERT ###################################################################################### 
 
 
 @app.route("/choos")
 def choos(): 
     all_categories=Category.get_all()
     return render_template("interset.html",all_categories=all_categories)
-##############################
+
+
 @app.route("/choose",methods=["POST"])
 def choose(): 
 
@@ -47,13 +47,20 @@ def choose():
         print("==============================")
         print(c)
         Interests.creat({"user_id":session['user_id'] ,"category_id":int(c)}) 
-    return redirect("/home" )
-####################################HOME########################################################################################### 
-@app.route('/home')
-def home_after_login():
-    user_events = Event.get_user_events({"users_id":session['user_id'] })
-    return render_template('home_after_login.html',user_events = user_events)
-################################################## login##################################################################################### 
+    return redirect(f"/home/{int(checked_options[0])}" )
+
+
+@app.route('/home/<int:category_id>')
+def home_after_login(category_id):
+    my_interest_events = Event.get_user_events({"categories_id":category_id})
+    # user_events = Event.get_events_with_joined_users()
+    loggedin_user= User.get_user({"id":session['user_id'] })
+    # all_groups = Event.get_all_groups({"users_id":session['user_id'] })
+    # print("***************")
+    # print(all_groups)
+    return render_template('home_after_login.html',my_interest_events = my_interest_events, loggedin_user=loggedin_user)
+
+
 @app.route("/welcome",methods=["POST"])
 def login():
     user=User.get_by_email({'email':request.form["email"]})
@@ -64,131 +71,15 @@ def login():
         flash("invalid email/pasword")
         return redirect('/users') 
     session["user_id"]=user.id 
-    return redirect('/home') 
-################################################# update##############################################################################################
-
-# @app.route('//<int:id>/edit' )
-# def edit(id):  
-#     party= .get_by_id({"id":id})
-#     return render_template("edit.html", party=party)
-
-# @app.route("/parties/<int:id>/update",methods=["POST"]) 
-# def update(id): 
-#     if Party.validate(request.form):
-#         data={ 
-#          **request.form, 
-#             "id":id
-#         } 
-#         Party.update(data) 
-#         return redirect("/dashboard") 
-#     return redirect(f"/parties/{id}/edit") 
+    print("*****************", user.interests[0])
+    first_category= user.interests[0]
+    return redirect(f'/home/{first_category}') 
 
 
-#############################contact######################################
 @app.route("/contact_us") 
 def contact_us():
     return render_template("contact.html")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-##########################################LOGIN#######################################################################################  
-
-# @app.route("/login",methods=["POST"])
-# def login():
-#     user=User.get_by_email({'email':request.form["email"]})
-#     if not user: 
-#         flash("invalid email/pasword","login")
-#         return redirect('/login') 
-#     if not bcrypt.check_password_hash(user.password,request.form['password']):
-#         flash("invalid email/pasword","login")
-#         return redirect('/login') 
-#     session["user_id"]=user.id 
-#     return redirect('/home') 
-# @app.route("/logout",methods=["POST"]) 
-# def logout():
-#     session.clear()
-#     return redirect("/") 
-
-###########################################edit##############################################################################################
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# def index():
-#     return render_template("index.html")
-# @app.route("/users/create",methods=["POST"]) 
-# def register():
-#     if User.validate(request.form):
-#         pw=bcrypt.generate_password_hash(request.form["password"])
-#         data={ 
-#             **request.form,
-#             "password":pw
-#         } 
-#         user_id=User.register(data) 
-#         session["user_id"]=user_id
-#         return redirect("/dashboard")
-    
-#     return redirect("/") 
-# @app.route("/login",methods=["POST"])
-# def login():
-#     user=User.get_by_email({'email':request.form["email"]})
-#     if not user: 
-#         flash("invalid email/pasword","login")
-#         return redirect('/') 
-#     if not bcrypt.check_password_hash(user.password,request.form['password']):
-#         flash("invalid email/pasword","login")
-#         return redirect('/') 
-#     session["user_id"]=user.id 
-#     return redirect('/dashboard') 
-
-# @app.route("/dashboard")
-# def dashboard():   
-#     if not 'user_id'in session:
-#         return redirect('/')
-#     logged_user=User.get_by_id({"id":session['user_id']})
-#     return render_template("dashboard.html", logged_user=logged_user) 
 
 # @app.route("/logout") 
 # def logout():

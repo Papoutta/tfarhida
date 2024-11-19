@@ -56,8 +56,13 @@
             </div>
         </div>
     </div>
+    <div>
+        {% for category_id in loggedin_user.interests %}
+            <a href="/home/{{category_id}}"> {{category_id}} </a>
+        {%endfor%}
+    </div>
     <div class="events">
-        {%for event in user_events%}
+        {%for event in my_interest_events%}
         <div class="event">
             <div class="event-header">
                 <h4>{{event.name}}</h4>
@@ -67,29 +72,39 @@
                     <span></span>
                 </button>
             </div>
-
-            <img src="{{ url_for('static', filename='img/' + event.photo) }}" alt="">
+            <div style="display: flex; gap: 20px;">
+                <img src="{{ url_for('static', filename='img/' + event.photo) }}" alt="">
+                <div>
+                    <h1>Additional Informations :</h1>
+                    <p>{{event.additional_information}}</p>
+                </div>
+            </div>
             <div class="event-footer">
                 <div class="user">
                     <img src="{{ url_for('static', filename='img/logo.PNG') }}" alt="">
                     <h3>{{event.poster.first_name}}</h3>
                 </div>
                 <div class="likes">
-                    <form action="/groups/add" method="post">
-                        <input type="hidden" value="{{event.id}}" name="events_id">
-                    <button class="join-btn">Ask to Join</button>
-                </form>
-                <form action="/groups/delete" method="post">
-                    <input type="hidden" value="{{event.id}}" name="events_id">
-                <button class="join-btn">Remove from group</button>
-            </form>
-                    <div class="mamou">
-                        <h4>61</h4>
-                        <img src="{{ url_for('static', filename='img/heart.PNG') }}" alt="">
-                    </div>
+                    {% if event.poster != session['user_id'] %}
+                        {% if loggedin_user.id in event.joined_users %}
+                        
+                        <form action="/groups/delete" method="post">
+                            <input type="hidden" value="{{event.id}}" name="events_id">
+                        <button class="join-btn">Remove from group</button>
+                        </form>
+                        {% else %}
+                        <form action="/groups/add" method="post">
+                            <input type="hidden" value="{{event.id}}" name="events_id">
+                        <button class="join-btn">Ask to Join</button>
+                        </form>
+                        {% endif %}
+                        <div class="mamou">
+                            <h4>61</h4>
+                            <img src="{{ url_for('static', filename='img/heart.PNG') }}" alt="">
+                        </div>
+                    {% endif %}
                 </div>
             </div> 
-            {%endfor%}
         </div>
         {%endfor%}
     </div>

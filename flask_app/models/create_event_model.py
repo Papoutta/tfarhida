@@ -14,6 +14,7 @@ class Event:
         self.users_id = data['users_id']
         self.categories_id = data['categories_id']
         self.poster = user_models.User.get_user({"id":self.users_id})
+        self.joined_users=Event.get_joined_users({"events_id": self.id})
 
 
     
@@ -32,11 +33,32 @@ class Event:
     def delete_from_group(cls, data):
         query = "DELETE FROM tfarhida_schema.groups WHERE users_id = %(users_id)s AND events_id=%(events_id)s; "
         return connectToMySQL(DB).query_db(query,data) 
+        
+    @classmethod
+    def get_all_groups(cls,data):
+        query="select *from tfarhida_schema.groups where users_id =%(users_id)s and events_id=%(events_id)s;"
+        results=connectToMySQL(DB).query_db(query,data) 
+        all_groups=[]
+        for row in results:
+            all_groups.append(cls(row))
+        return all_groups
+
     @classmethod
     def get_user_events(cls,data):
-        query="select *from events  where users_id =%(users_id)s;"
+        query="select * from events  where categories_id =%(categories_id)s;"
         results=connectToMySQL(DB).query_db(query,data) 
         all_events=[]
         for row in results:
             all_events.append(cls(row))
         return all_events
+    
+    @classmethod
+    def get_joined_users(cls,data):
+        query="""SELECT * FROM tfarhida_schema.groups
+
+                    WHERE tfarhida_schema.groups.events_id = %(events_id)s;"""
+        results=connectToMySQL(DB).query_db(query, data) 
+        all_users=[]
+        for row in results:
+            all_users.append(row['users_id'])
+        return all_users

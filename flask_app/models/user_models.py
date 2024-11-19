@@ -17,6 +17,7 @@ class User:
         self.role=data["role"]
         self.created_at=data["created_at"]
         self.updated_at=data["updated_at"]
+        self.interests = User.get_interets({"user_id": self.id})
     @classmethod  
     def register(cls,data): 
         qurey="INSERT INTO users (first_name,last_name,email,date,password,phone_number,gender,photo,role)VALUES (%(first_name)s, %(last_name)s, %(email)s,%(date)s, %(password)s, %(phone_number)s, %(gender)s,%(photo)s, %(role)s);"
@@ -43,6 +44,28 @@ class User:
         if result:
             return cls(result[0]) 
         return False  
+    
+    @classmethod
+    def get_interets(cls, data):
+        query=""" SELECT * FROM tfarhida_schema.interests
+                    WHERE tfarhida_schema.interests.user_id = %(user_id)s;"""
+        results=connectToMySQL(DB).query_db(query, data) 
+        all_categories=[]
+        for row in results:
+            all_categories.append(row['category_id'])
+        return all_categories
+    
+
+    @classmethod
+    def get_interests_names(cls,data):
+        query = """SELECT category_name FROM tfarhida_schema.interests 
+        join categories on categories.id = interests.category_id 
+        where user_id = %(user_id)s;"""
+        results=connectToMySQL(DB).query_db(query,data) 
+        all_intersts=[]
+        for row in results:
+            all_intersts.append(cls(row))
+        return all_intersts
 
     ###########################
     @staticmethod

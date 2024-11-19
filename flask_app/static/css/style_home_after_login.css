@@ -151,12 +151,10 @@
     align-items: center;
 }
 .events img{  
-    width: 100%;
-    max-width: 1300px;
-
+    width: 30%;
 }
 .event {
-    width: 100%;
+    width: 80%;
     max-width: 1300px;
     background-color: #fff;
     border-radius: 10px;
