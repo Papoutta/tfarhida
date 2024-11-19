@@ -32,7 +32,7 @@ class User:
     ########################
     @classmethod 
     def update(cls,data): 
-        query="update users set first_name=%(first_name)s,last_name=%(last_name)s,date=%(date)s,date=%(date)s,phone_number=%(phone_number)s ,photo=%(photo)s, gender=%(gender)s where id=%(id)s;"
+        query="update users set first_name=%(first_name)s,last_name=%(last_name)s,date=%(date)s,phone_number=%(phone_number)s , gender=%(gender)s where id=%(id)s;"
         result=connectToMySQL(DB).query_db(query,data) 
         return result
     ########################### 
@@ -46,7 +46,7 @@ class User:
 
     ###########################
     @staticmethod
-    def validate(data): 
+    def validate(data: dict): 
         is_valide=True
         if len(data["first_name"])<2:
             flash("first name must be at least 2 characters","first_name")
@@ -60,12 +60,12 @@ class User:
         elif User.get_by_email({"email":data['email']}):
             flash ("email alread taken","email") 
             is_valide=False
-        if (data["photo"]==""): 
+        if "photo" in data.keys() and data["photo"]=="": 
             flash ("put photos","photo") 
             is_valide=False
-        if len(data["password"])<7:
+        if  "password" in data.keys() and len(data["password"])<7:
             flash("password must contain at least 7 charactes","password") 
-        elif (data["password"]!=data["password_confirm"]): 
+        elif "password_confirm" in data.keys()and  (data["password"]!=data["password_confirm"]): 
             flash("password don 't match","password_confirm") 
             is_valide=False
         return is_valide 

@@ -151,9 +151,7 @@
     align-items: center;
 }
 .events img{  
-    width: 100%;
-    max-width: 1300px;
-
+    width: 20%;
 }
 .event {
     width: 100%;
