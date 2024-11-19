@@ -41,11 +41,22 @@ def choose():
  for c in session["categories"]: 
     choos=Interests.creat({"user_id":session['user_id'] ,"category_id":c}) 
     return redirect("/home" )
-#################################### HOME########################################################################################### 
+####################################HOME########################################################################################### 
 @app.route('/home')
 def home_after_login():
     return render_template('home_after_login.html')
-####################################################################################################################################### 
+################################################## login##################################################################################### 
+@app.route("/welcome",methods=["POST"])
+def login():
+    user=User.get_by_email({'email':request.form["email"]})
+    if not user: 
+        flash("invalid email/pasword")
+        return redirect('/users') 
+    if not bcrypt.check_password_hash(user.password,request.form['password']):
+        flash("invalid email/pasword")
+        return redirect('/users') 
+    session["user_id"]=user.id 
+    return redirect('/home') 
 ################################################# update##############################################################################################
 
 # @app.route('//<int:id>/edit' )
@@ -65,7 +76,10 @@ def home_after_login():
 #     return redirect(f"/parties/{id}/edit") 
 
 
-
+#############################contact######################################
+@app.route("/contact_us") 
+def contact_us():
+    return render_template("contact.html")
 
 
 

@@ -1,18 +1,21 @@
 from flask_app import app
 from flask import render_template # type: ignore  
 from flask import render_template,redirect,request,session,flash
-from flask_app.models.user_models import User 
+from flask_app.models.user_models import User  
+from flask_app.models.category_model import Category
+
 
 @app.route('/profile')
 def profile():
     return render_template('profile.html')  
 @app.route('/edite_your_information/<int:id>')
 def edite_your_information(id): 
-    user=User.get_user({"id":id})
+    user=User.get_user({"id":id})  
+    all_categories=Category.get_all()
+    print(user.first_name)
+    return render_template('edit_your_information.html',user=user,all_categories=all_categories )
 
-    return render_template('edit_your_information.html',user=user )
-
-@app.route("/profile/<int:id>/update",methods=["POST"]) 
+@app.route("/edite_your_information/<int:id>/update",methods=["POST"]) 
 def update(id): 
     if User.validate(request.form):
 

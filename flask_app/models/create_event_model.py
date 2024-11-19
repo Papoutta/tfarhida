@@ -19,7 +19,8 @@ class Event:
     def save(cls,data):
         query = "INSERT INTO events (type, name, place, date, additional_information,photo) values (%(type)s,%(name)s,%(place)s,%(date)s,%(additional_information)s,%(photo)s) "
         return connectToMySQL(DB).query_db(query,data) 
-    ##############################################################
+    ############################################################## 
+  
   
 
     

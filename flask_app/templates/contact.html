@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> 
+   <link rel="stylesheet" 
+     type="text/css" href="{{ url_for('static', filename='css/style_home.css') }}">   
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/nave_style.css') }}">
+
+    
+</head>
+<body>
+    <body>
+        <div class="navbar">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='img/logo.PNG') }}" alt="">
+                <h1>TFARHIDA</h1>
+            </div>
+            <div class="">
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/top_events"> tope events</a></li>
+                    <li><a href="/Categogies"> Categogies</a></li>
+                    <li><a href="/contact_us">Contact</a></li>
+                    <li><button class="create-button" id="bttt"><a href="/event">Create</a></button></li>
+                </ul>
+            </div>
+            <div class="right_icons">
+                <img src="../static/img/notification.PNG" alt="Notifications" class="notification-icon">
+                <a href="/profile"><img src="../static/img/profile.jpeg" alt="Profile" class="profile-icon"></a>
+            </div>
+        </div>
+        
+    <form action="https://api.web3forms.com/submit" method="POST">       
+        <input type="hidden" name="access_key" value="aa1a0251-49ce-45e7-9297-ab9e85215f16">
+           <div id="contact_us" class="contact_us">
+               <div class="con">
+                   <h2>Contact Us</h2>
+                   <div class="input-container">
+                       <div class="input-group">
+                           <input type="text" name="email_or_name" required>
+                           <label>Your username or email</label>
+                           <span class="underline"></span>
+                       </div>
+                       <div class="input-group">
+                           <input type="text" name="problem" required>
+                           <label>Problem</label>
+                           <span class="underline"></span>
+                       </div>
+                   </div>
+                   <button class="ret" type="submit">SUBMIT</button>
+               </div>
+           </div>
+       </form>
+   
+    </div>
+</body>
+</html>

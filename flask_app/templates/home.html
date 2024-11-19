@@ -7,7 +7,9 @@
     <title>Document</title>
     <link rel="stylesheet" 
     type="text/css" 
-    href="{{ url_for('static', filename='css/style_home.css') }}"> 
+    href="{{ url_for('static', filename='css/style_home.css') }}">   
+    
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/nave_style.css') }}">
     
 </head>
 <body>
@@ -25,7 +27,7 @@
             </ul>
         </div>
         <div class="buttonn">
-            <button id="bu">Login</button>
+            
           <button class="text-black-50"><a href="/users" id="a" >Registration</a></button>
         </div>
     </div>

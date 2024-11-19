@@ -34,8 +34,13 @@ class Category :
         return False
 
 
-
-
+    @classmethod 
+    def intersts(cls,data):
+        query="select categories* from  users join intersts on users.id=intersts.user_id join categories on insrests.categor_id=categories.id  where users.id=%(id)s"
+        result=connectToMySQL(DB).query_db(query,data) 
+        if result :
+            return cls(result[0])
+        return False
     @staticmethod
     def validate(data):
         is_valid=True

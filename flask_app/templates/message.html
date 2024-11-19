@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> 
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/nave_style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='img/logo.PNG') }}" alt="">
+            <h1>TFARHIDA</h1>
+        </div>
+        <div class="">
+            <ul>
+                <li>Lamma chila bila </li>
+                <li><a href="/home">Home</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><button class="create-button"><a href="/create_event">Create</a></button></li>
+            </ul>
+        </div>
+        <div class="right_icons">
+            <img src="../static/img/notification.PNG" alt="Notifications" class="notification-icon">
+            <a href="/profile"><img src="../static/img/profile.jpeg" alt="Profile" class="profile-icon"></a>
+        </div>
+    </div> 
+    <form action="">  
+        <h1>Message </h1>
+        <div> 
+            {%form messsafe in goupe %} 
+            <img src="" alt=""><label for="">{{}}</label>
+            {%endfor%}
+        </div> 
+        <!-- message  -->
+        <div></div> 
+        <!-- end message-->
+    </form> 
+
+</body>
+</html>

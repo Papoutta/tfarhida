@@ -39,7 +39,8 @@ html {
 
 .container ul {
     list-style: none;
-    display: flex;
+    display: flex; 
+  
     gap: 20px;
 }
 
@@ -362,5 +363,4 @@ button:hover {
 .last_container p {
     margin: 0;
     font-size: 1em;
-}
-
+} 

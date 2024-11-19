@@ -9,7 +9,7 @@ class User:
         self.first_name=data["first_name"]
         self.last_name=data["last_name"]
         self.email=data["email"] 
-        self.data=data["date"]
+        self.date=data["date"]
         self.password=data["password"]
         self.phone_number=data["phone_number"] 
         self.gender=data["gender"]
@@ -43,7 +43,7 @@ class User:
         if result:
             return cls(result[0]) 
         return False  
-    
+
     ###########################
     @staticmethod
     def validate(data): 

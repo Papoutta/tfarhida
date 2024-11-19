@@ -1,93 +1,3 @@
-/* Basic reset and setup */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    background-color: #eeeeee;
-    color: #333;
-  
-}
-
-/* smooth */
-html {
-    scroll-behavior: smooth;
-  }
-
-/* Container for the header and navigation */
-.navbar {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 0.89);
-    position: fixed;
-    z-index: 1000; 
-    margin: 0 auto;
-
-}
-
-.navbar h1 {
-    font-size: 1.5em;
-    color: #333;
-    font-weight: bold;
-    text-align: center;
-}
-
-.navbar ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-
-.navbar ul li {
-    cursor: pointer;
-}
-.navbar a {
-    color: gray;
-    text-decoration: none;
-    padding: 0.5em 1em;
-    transition: background-color 0.3s ease;
-    border-radius: 20px;
-  }
-.navbar a:hover {
-    background-color: #555;
-    border-radius: 20px;
-  }
-  .create-button{
-    border: none;
-  }
-.create-button a{
-    padding: 10px 20px;
-    background-color: #ea5d29;
-    color: white;
-
-    border-radius: 20px;
-    
-}
-.logo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-.logo img {
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-}
-.right_icons{
-    display: flex;
-    gap: 10px;
-}
-.right_icons img{
-    width: 50px;
-    border-radius: 50%;
-}
 
 
 /* Second container with large image and title */
@@ -241,8 +151,8 @@ html {
     align-items: center;
 }
 .events img{  
-    width: 100%;
-    max-width: 1300px;
+    width: 20%;
+  
 
 }
 .event {
@@ -326,4 +236,10 @@ html {
 }
 .mamou{
     display: flex;
+} 
+.imgp{ 
+    display: flex; 
+    gap: 10%; 
+    font-size: xx-large; 
+    
 }

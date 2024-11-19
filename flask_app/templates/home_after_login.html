@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/nave_style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_home_after_login.css') }}">
 </head>
 
@@ -17,10 +18,10 @@
         <div class="">
             <ul>
                 <li><a href="/home">Home</a></li>
-                <li><a href="#about_us">About us</a></li>
-                <li><a href="#contact_us">Contact us</a></li>
-                <li><a href="#reviews">Reviews</a></li>
-                <li><button class="create-button"><a href="/create_event">Create</a></button></li>
+                <li><a href="/top_events"> tope events</a></li>
+                <li><a href="/Categogies"> Categogies</a></li>
+                <li><a href="/contact_us">Contact</a></li>
+                <li><button class="create-button"><a href="/event">Create</a></button></li>
             </ul>
         </div>
         <div class="right_icons">
@@ -42,7 +43,8 @@
                 <h3>STORIES</h3>
             </div>
             <div class="storys">
-                <img src="../static/img/2020-11-01_142354_loisirs-d-ete-bc-atlas-for-men-b2d279-0@1x-1-1024x576.jpg" alt="">
+                <img src="../static/img/2020-11-01_142354_loisirs-d-ete-bc-atlas-for-men-b2d279-0@1x-1-1024x576.jpg"
+                    alt="">
                 <img src="../static/img/240_F_409929061_pTKNZpllDH5KlMJu6uKaApNVSGUlP294.jpg" alt="">
                 <img src="../static/img/3018022022143229.jpg" alt="">
                 <img src="{{ url_for('static', filename='img/Capture.PNG') }}" alt="">
@@ -63,22 +65,32 @@
                     <span></span>
                     <span></span>
                 </button>
-            </div>
-
-        <img src="{{ url_for('static', filename='img/friendship-day_world-friendship-day.jpg') }}" alt="">
-            <div class="event-footer">
-                <div class="user">
-                    <img src="{{ url_for('static', filename='img/logo.PNG') }}" alt="">
-                    <h3>user name 1</h3>
+            </div> 
+            {%for event in all_events %}
+            <div>
+                <div class="imgp">
+                    <img src="{{ url_for('static', filename='img/friendship-day_world-friendship-day.jpg') }}" id="img" alt="">
+                    <p>{{all_events.type}}</p> 
+                    <p>{{all_events.name}}</p> 
+                    <p>{{all_events.palce}}</p> 
+                    <p>{{all_events.date}}</p>  
+                    <p>{{all_events.additional_informtaion}}</p>
                 </div>
-                <div class="likes">
-                    <button class="join-btn">Ask to Join</button>
-                    <div class="mamou">
-                        <h4>61</h4>
-                        <img src="{{ url_for('static', filename='img/heart.PNG') }}" alt="">
+                <div class="event-footer">
+                    <div class="user">
+                        <img src="{{ url_for('static', filename='img/logo.PNG') }}" alt="">
+                        <h3>{{user.first_name}}</h3>
+                    </div>
+                    <div class="likes">
+                        <button class="join-btn">Ask to Join</button>
+                        <div class="mamou">
+                            <h4>{{like.number}}</h4>
+                            <button><img src="{{ url_for('static', filename='img/heart.PNG') }}" alt=""></button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </div> 
+            {%endfor%}
         </div>
     </div>
 
