@@ -1,6 +1,6 @@
 from flask_app import app
  
-from flask import Flask, flash, request, redirect, url_for, render_template
+from flask import Flask, flash, request, redirect, url_for, render_template, session
 import urllib.request
 import os
 from werkzeug.utils import secure_filename
@@ -27,36 +27,42 @@ def event():
 # Route to create an event
 @app.route("/create/event", methods=["POST"])
 def create_event():
-    if 'file' not in request.files:
-        flash('No file part')
-        return redirect(request.url)
+    # if 'file' not in request.files:
+    #     flash('No file part')
+    #     return redirect(request.url)
     
-    file = request.files['file']
-    if file.filename == '':
-        flash('No image selected for uploading')
-        return redirect(request.url)
+    # file = request.files['file']
+    # if file.filename == '':
+    #     flash('No image selected for uploading')
+    #     return redirect(request.url)
     
-    if file and allowed_file(file.filename):
-        # Secure the filename and save the file
-        filename = secure_filename(file.filename)
-        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        file.save(filepath)
+    # if file and allowed_file(file.filename):
+    #     # Secure the filename and save the file
+    #     filename = secure_filename(file.filename)
+    #     filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    #     file.save(filepath)
         
-        # Prepare data for saving to the database
-        data = {
-            **request.form,
-            'image_path': filepath  # Include the file path for database storage
-        }
+    #     # Prepare data for saving to the database
+    #     data = {
+    #         **request.form,
+    #         'image_path': filepath  # Include the file path for database storage
+    #     }
 
-        # Save the event (assuming `Event.save` is a custom method)
-        Event.save(data)
+    #     # Save the event (assuming `Event.save` is a custom method)
         
-        # Flash success and render a template to display the uploaded image
-        flash('Image successfully uploaded and event created!')
-        return render_template('create_events.html', img=filename)
-    else:
-        flash('Allowed image types are - png, jpg, jpeg, gif')
-        return redirect(request.url)
+        data={
+            **request.form,
+            'users_id' : session["user_id"]
+        }
+        Event.save(data)        
+        return redirect('/event')
+        
+    #     # Flash success and render a template to display the uploaded image
+    #     flash('Image successfully uploaded and event created!')
+    #     return render_template('create_events.html', img=filename)
+    # else:
+    #     flash('Allowed image types are - png, jpg, jpeg, gif')
+    #     return redirect(request.url)
 
 
     

@@ -21,6 +21,7 @@ def register():
             **request.form,  
             "password":pw
         } 
+        print(data,"**********************************")
         user_id=User.register(data)
         session["user_id"]=user_id
         return redirect("/choos")
@@ -36,10 +37,15 @@ def choos():
 ##############################
 @app.route("/choose",methods=["POST"])
 def choose(): 
- checked_options = request.form.getlist('choose')
- session["categories"]=checked_options
- for c in session["categories"]: 
-    choos=Interests.creat({"user_id":session['user_id'] ,"category_id":c}) 
+
+    checked_options = request.form.getlist('choose')
+    print("**********************")
+    print(checked_options)
+    #  session["categories"]=checked_options
+    for c in checked_options: 
+        print("==============================")
+        print(c)
+        Interests.creat({"user_id":session['user_id'] ,"category_id":int(c)}) 
     return redirect("/home" )
 #################################### HOME########################################################################################### 
 @app.route('/home')

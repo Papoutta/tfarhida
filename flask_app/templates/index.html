@@ -49,7 +49,7 @@
                   <span class="d-flex gap-4">
                     <span><input type="radio"  name="gender" checked value="1"><label for="">Woman</label></span>
                     <span>
-                      <input type="radio" name="gender" value="0"><label for="" >main</label></span> 
+                      <input type="radio" name="gender" value="0"><label for="" >Men</label></span> 
 
                   </span> 
                   {% for message in get_flashed_messages(category_filter=['gender'])%}
@@ -71,9 +71,9 @@
               <div>
                 <span><img src="{{ url_for('static', filename='img/profile.jpeg') }}">
                 </span>
-                <span>
+                <!-- <span>
                   <input type="checkbox" name="valide" id="valide"> <label for="" class="">I agree to the of
-                  </label></span>
+                  </label></span> -->
               </div>
             </div>
             <div class="d-flex flex-column gap-3">
