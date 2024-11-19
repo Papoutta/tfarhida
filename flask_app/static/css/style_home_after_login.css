@@ -241,9 +241,7 @@ html {
     align-items: center;
 }
 .events img{  
-    width: 100%;
-    max-width: 1300px;
-
+    width: 30%;
 }
 .event {
     width: 100%;

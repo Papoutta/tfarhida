@@ -3,6 +3,7 @@ from flask import render_template,redirect,request,session,flash
 from flask_app.models.user_models import User   
 from flask_app.models.category_model import Category 
 from flask_app.models.intersts_models import Interests
+from flask_app.models.create_event_model import Event
 from flask_bcrypt import Bcrypt  
 bcrypt=Bcrypt(app)
 @app.route('/')
@@ -50,7 +51,8 @@ def choose():
 #################################### HOME########################################################################################### 
 @app.route('/home')
 def home_after_login():
-    return render_template('home_after_login.html')
+    user_events = Event.get_user_events({"users_id":session['user_id'] })
+    return render_template('home_after_login.html',user_events = user_events)
 ####################################################################################################################################### 
 ################################################# update##############################################################################################
 
