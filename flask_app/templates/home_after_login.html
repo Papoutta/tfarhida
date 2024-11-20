@@ -77,7 +77,7 @@
             <img src="{{ url_for('static', filename='img/' + event.photo) }}" alt="">
             <div class="event-footer">
                 <div class="user">
-                    <img src="{{ url_for('static', filename='img/logo.PNG') }}" alt="">
+                    <img src="{{ url_for('static', filename='img/' + event.poster.photo) }}" alt="{{event.poster.photo}}">
                     <h3>{{event.poster.first_name}}</h3>
                 </div>
                 <div class="likes">
@@ -88,10 +88,19 @@
                 <form action="/groups/delete" method="post">
                     <input type="hidden" value="{{event.id}}" name="events_id">
                 <button class="join-btn">Remove from group</button>
-            </form>
+            </form> 
                     <div class="mamou">
-                        <h4>61</h4>
-                        <img src="{{ url_for('static', filename='img/heart.PNG') }}" alt="">
+                        <h4>{{event.num_likes['like_count']}}</h4>
+                        <form action="/likes/add" method="post"> 
+                            <input type="hidden" value="{{event.id}}" name="event_id">
+                            <button type="submit" class="like-button " id="likes">🥰</button>
+                            
+                        </form>
+                        <form action="/likes/delete" method="post"> 
+                            <input type="hidden" value="{{event.id}}" name="event_id">
+                            <!-- <input type="submit" id="dont_likes"> -->
+                            <button type="submit"   id="dont_likes">🙂</button>
+                        </form>
                     </div>
                 </div>
             </div> 
@@ -100,7 +109,7 @@
         {%endfor%}
     </div>
 
-    <script type="text/javascript" src="{{ url_for('static', filename='js/profil.js') }}"></script>
+    <!-- <script type="text/javascript" src="{{ url_for('static', filename='js/profil.js') }}"></script> -->
 </body>
 
 </html>

@@ -228,9 +228,8 @@
 }
 
 .likes img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+  
+   
 }
 .mamou{
     display: flex;
@@ -240,4 +239,37 @@
     gap: 10%; 
     font-size: xx-large; 
     
+}.like-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    color: white;
+}
+
+/* Unliked state (default) */
+.like-button.unliked {
+    background-color: #ff4d4d; /* Red for unliked */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Liked state */
+.like-button.liked {
+    background-color: #4caf50; /* Green for liked */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effect */
+.like-button:hover {
+    transform: scale(1.05); /* Slight zoom-in effect */
+    opacity: 0.9;
+}
+
+/* Active state (when clicking the button) */
+.like-button:active {
+    transform: scale(0.95); /* Slight zoom-out effect */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }

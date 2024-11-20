@@ -2,6 +2,7 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import DB
 from flask import flash
 from flask_app.models import user_models
+from flask_app.models import likes_models
 
 class Event:
     def __init__(self, data):
@@ -14,6 +15,7 @@ class Event:
         self.users_id = data['users_id']
         self.categories_id = data['categories_id']
         self.poster = user_models.User.get_user({"id":self.users_id})
+        self.num_likes= likes_models.Like.number({"event_id":self.id})
 
 
     
