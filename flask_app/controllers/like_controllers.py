@@ -2,7 +2,6 @@ from flask_app import app
 from flask import render_template,request,session,redirect
 from flask_app.models.user_models import User   
 from flask_app.models.likes_models import Like 
-@app.route("/likes/add",methods=["POST"]) 
 
     
 @app.route('/likes/add', methods=['post'])
