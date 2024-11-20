@@ -5,6 +5,7 @@ import os
 from werkzeug.utils import secure_filename
 from flask_app.models.category_model import Category 
 from flask_app.models.create_event_model import Event
+from flask_app.models.user_models import User
 import uuid 
 
 UPLOAD_FOLDER = os.path.join('flask_app', 'static', 'img')
@@ -16,8 +17,8 @@ def allowed_file(filename):
 
 @app.route('/event')
 def event():
-    all_categories=Category.get_all()
-    return render_template('create_events.html',all_categories=all_categories)  
+    loggedin_user= User.get_user({"id":session['user_id'] })
+    return render_template('create_events.html',loggedin_user=loggedin_user)  
 
 
 # Route to create an event
@@ -47,8 +48,10 @@ def create_event():
         }   
 
     #     # Save the event (assuming `Event.save` is a custom method)
-        Event.save(data)        
-        return redirect('/event')
+        Event.save(data)   
+        loggedin_user= User.get_user({"id":session['user_id'] })
+
+        return redirect(f'/home/{loggedin_user.interests[0]["category_id"]}')
         
     #     # Flash success and render a template to display the uploaded image
     #     flash('Image successfully uploaded and event created!')
@@ -65,7 +68,10 @@ def add_to_group():
         "users_id": session['user_id']
     }
     Event.add_to_group(data)
-    return redirect('/home')
+    loggedin_user= User.get_user({"id":session['user_id'] })
+
+    return redirect(f'/home/{loggedin_user.interests[0]}')
+
 @app.route('/groups/delete', methods=['post'])
 def delete_from_group():
     data={
@@ -73,4 +79,6 @@ def delete_from_group():
         "users_id": session['user_id']
     }
     Event.delete_from_group(data)
-    return redirect('/home')
+    loggedin_user= User.get_user({"id":session['user_id'] })
+
+    return redirect(f'/home/{loggedin_user.interests[0]}')

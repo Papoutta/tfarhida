@@ -62,8 +62,13 @@
             </div>
         </div>
     </div>
+    <div>
+        {% for category in loggedin_user.interests %}
+            <a href="/home/{{category['category_id']}}"> {{category['category_name']}} </a>
+        {%endfor%}
+    </div>
     <div class="events">
-        {%for event in user_events%}
+        {%for event in my_interest_events%}
         <div class="event">
             <div class="event-header">
                 <h4>{{event.name}}</h4>
@@ -73,8 +78,23 @@
                     <span></span>
                 </button>
             </div>
-
-            <img src="{{ url_for('static', filename='img/' + event.photo) }}" alt="">
+            <div style="display: flex; gap: 30px;">
+                <img src="{{ url_for('static', filename='img/' + event.photo) }}" alt="">
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div style="display: flex; gap: 20px; align-items: center;">
+                        <h1>Place :</h1>
+                        <h2>{{event.place}}</h2>
+                    </div>
+                    <div style="display: flex; gap: 20px; align-items: center;">
+                        <h1>Date :</h1>
+                        <h2>{{event.date}}</h2>
+                    </div>
+                    <div>
+                        <h1>Additional Informations :</h1>
+                        <p>{{event.additional_information}}</p>
+                    </div>                    
+                </div>
+            </div>
             <div class="event-footer">
                 <div class="user">
                     <img src="{{ url_for('static', filename='img/' + event.poster.photo) }}" alt="{{event.poster.photo}}">
@@ -102,9 +122,26 @@
                             <button type="submit"   id="dont_likes">🙂</button>
                         </form>
                     </div>
+                    {% if event.poster.id != loggedin_user.id %}
+                        {% if loggedin_user.id in event.joined_users %}
+                        
+                        <form action="/groups/delete" method="post">
+                            <input type="hidden" value="{{event.id}}" name="events_id">
+                        <button class="join-btn">Remove from group</button>
+                        </form>
+                        {% else %}
+                        <form action="/groups/add" method="post">
+                            <input type="hidden" value="{{event.id}}" name="events_id">
+                        <button class="join-btn">Ask to Join</button>
+                        </form>
+                        {% endif %}
+                        <div class="mamou">
+                            <h4>61</h4>
+                            <img src="{{ url_for('static', filename='img/heart.PNG') }}" alt="">
+                        </div>
+                    {% endif %}
                 </div>
             </div> 
-        
         </div>
         {%endfor%}
     </div>

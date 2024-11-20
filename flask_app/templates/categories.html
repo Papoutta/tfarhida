@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/nave_style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_home_after_login.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='img/logo.PNG') }}" alt="">
+            <h1>TFARHIDA</h1>
+        </div>
+        <div style="display: flex;">
+            <li><a href="/home">Home</a></li>
+            <li><a href="/top_events"> Top Events</a></li>
+            <li><a href="/categories"> Categories</a></li>
+            <li><a href="/contact_us">Contact</a></li>
+            <li><button class="create-button"><a href="/event">Create</a></button></li>
+        </ul>
+        </div>
+        <div class="right_icons">
+            <img src="../static/img/notification.PNG" alt="Notifications" class="notification-icon">
+            <a href="/profile"><img src="../static/img/profile.jpeg" alt="Profile" class="profile-icon"></a>
+        </div>
+    </div> 
+    <div></div>
+    <h1>categories</h1> 
+    <div class="events">
+        {%for event in all_events%}
+        <div class="event">
+            <div class="event-header">
+                <h4>{{event.name}}</h4>
+                <button class="more-options">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <div style="display: flex; gap: 30px;">
+                <img src="{{ url_for('static', filename='img/' + event.photo) }}" alt="">
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div style="display: flex; gap: 20px; align-items: center;">
+                        <h1>Place :</h1>
+                        <h2>{{event.place}}</h2>
+                    </div>
+                    <div style="display: flex; gap: 20px; align-items: center;">
+                        <h1>Date :</h1>
+                        <h2>{{event.date}}</h2>
+                    </div>
+                    <div>
+                        <h1>Additional Informations :</h1>
+                        <p>{{event.additional_information}}</p>
+                    </div>                    
+                </div>
+            </div>
+            <div class="event-footer">
+                <div class="user">
+                    <img src="{{ url_for('static', filename='img/logo.PNG') }}" alt="">
+                    <h3>{{event.poster.first_name}}</h3>
+                </div>
+                <div class="likes">
+                    {% if event.poster.id == loggedin_user.id %}
+                        {% if loggedin_user.id in event.joined_users %}
+                        
+                        <form action="/groups/delete" method="post">
+                            <input type="hidden" value="{{event.id}}" name="events_id">
+                        <button class="join-btn">Remove from group</button>
+                        </form>
+                        {% else %}
+                        <form action="/groups/add" method="post">
+                            <input type="hidden" value="{{event.id}}" name="events_id">
+                        <button class="join-btn">Ask to Join</button>
+                        </form>
+                        {% endif %}
+                        <div class="mamou">
+                            <h4>61</h4>
+                            <img src="{{ url_for('static', filename='img/heart.PNG') }}" alt="">
+                        </div>
+                    {% endif %}
+                </div>
+            </div> 
+        </div>
+        {%endfor%}
+    </div>
+
+</body>
+</html>
