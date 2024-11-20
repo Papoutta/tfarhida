@@ -72,11 +72,21 @@
                     <span></span>
                 </button>
             </div>
-            <div style="display: flex; gap: 20px;">
+            <div style="display: flex; gap: 30px;">
                 <img src="{{ url_for('static', filename='img/' + event.photo) }}" alt="">
-                <div>
-                    <h1>Additional Informations :</h1>
-                    <p>{{event.additional_information}}</p>
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div style="display: flex; gap: 20px; align-items: center;">
+                        <h1>Place :</h1>
+                        <h2>{{event.place}}</h2>
+                    </div>
+                    <div style="display: flex; gap: 20px; align-items: center;">
+                        <h1>Date :</h1>
+                        <h2>{{event.date}}</h2>
+                    </div>
+                    <div>
+                        <h1>Additional Informations :</h1>
+                        <p>{{event.additional_information}}</p>
+                    </div>                    
                 </div>
             </div>
             <div class="event-footer">
@@ -85,7 +95,7 @@
                     <h3>{{event.poster.first_name}}</h3>
                 </div>
                 <div class="likes">
-                    {% if event.poster != session['user_id'] %}
+                    {% if event.poster.id == loggedin_user.id %}
                         {% if loggedin_user.id in event.joined_users %}
                         
                         <form action="/groups/delete" method="post">

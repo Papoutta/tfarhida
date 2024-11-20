@@ -57,7 +57,7 @@ def home_after_login(category_id):
     loggedin_user= User.get_user({"id":session['user_id'] })
     # all_groups = Event.get_all_groups({"users_id":session['user_id'] })
     # print("***************")
-    # print(all_groups)
+    # print(loggedin_user.id)
     return render_template('home_after_login.html',my_interest_events = my_interest_events, loggedin_user=loggedin_user)
 
 
