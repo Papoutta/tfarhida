@@ -1,6 +1,6 @@
 from flask_app import app
 from flask import render_template,request,session,redirect
-from flask_app.models.category_model import Category   
+from flask_app.models.user_models import User   
 from flask_app.models.likes_models import Like 
 @app.route("/likes/add",methods=["POST"]) 
 
@@ -12,7 +12,9 @@ def likes_add():
         "user_id": session['user_id']
     }
     Like.likes(data)
-    return redirect('/home')
+    user= User.get_user({'id': session['user_id']})
+    first_category= user.interests[0]
+    return redirect(f'/home/{first_category}')
 @app.route('/likes/delete', methods=['post'])
 def likes_delte():
     data={
@@ -20,6 +22,8 @@ def likes_delte():
         "user_id": session['user_id']
     }
     Like.delte(data)
-    return redirect('/home')
+    user= User.get_user({'id': session['user_id']})
+    first_category= user.interests[0]
+    return redirect(f'/home/{first_category}')
 
 

@@ -101,14 +101,22 @@
                     <h3>{{event.poster.first_name}}</h3>
                 </div>
                 <div class="likes">
+                    
+                    {% if event.poster.id != loggedin_user.id %}
+                    {% if loggedin_user.id in event.joined_users %}
+                    
+                    <form action="/groups/delete" method="post">
+                        <input type="hidden" value="{{event.id}}" name="events_id">
+                        <button class="join-btn">Remove from group</button>
+                    </form>
+                    {% else %}
                     <form action="/groups/add" method="post">
                         <input type="hidden" value="{{event.id}}" name="events_id">
-                    <button class="join-btn">Ask to Join</button>
-                </form>
-                <form action="/groups/delete" method="post">
-                    <input type="hidden" value="{{event.id}}" name="events_id">
-                <button class="join-btn">Remove from group</button>
-            </form> 
+                        <button class="join-btn">Ask to Join</button>
+                    </form>
+                    {% endif %}
+                    
+                    {% endif %}
                     <div class="mamou">
                         <h4>{{event.num_likes['like_count']}}</h4>
                         <form action="/likes/add" method="post"> 
@@ -122,24 +130,6 @@
                             <button type="submit"   id="dont_likes">🙂</button>
                         </form>
                     </div>
-                    {% if event.poster.id != loggedin_user.id %}
-                        {% if loggedin_user.id in event.joined_users %}
-                        
-                        <form action="/groups/delete" method="post">
-                            <input type="hidden" value="{{event.id}}" name="events_id">
-                        <button class="join-btn">Remove from group</button>
-                        </form>
-                        {% else %}
-                        <form action="/groups/add" method="post">
-                            <input type="hidden" value="{{event.id}}" name="events_id">
-                        <button class="join-btn">Ask to Join</button>
-                        </form>
-                        {% endif %}
-                        <div class="mamou">
-                            <h4>61</h4>
-                            <img src="{{ url_for('static', filename='img/heart.PNG') }}" alt="">
-                        </div>
-                    {% endif %}
                 </div>
             </div> 
         </div>
