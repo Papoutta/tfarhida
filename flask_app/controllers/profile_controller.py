@@ -11,8 +11,9 @@ def profile():
 @app.route('/edite_your_information/<int:id>')
 def edite_your_information(id): 
     user=User.get_user({"id":id})  
-    all_categories=Category.get_all()
-    print(user.first_name)
+    all_categories=Category.intersts({"user_id":id}) 
+    print(all_categories)
+   
     return render_template('edit_your_information.html',user=user,all_categories=all_categories )
 
 @app.route("/edite_your_information/<int:id>/update",methods=["POST"]) 
@@ -25,4 +26,4 @@ def update(id):
         } 
         User.update(data) 
         return redirect("/profile") 
-    return redirect(f"/profile/{id}/update") 
+    return redirect("/profile/<int:id>") 

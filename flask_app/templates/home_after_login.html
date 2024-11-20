@@ -26,7 +26,13 @@
         </div>
         <div class="right_icons">
             <img src="../static/img/notification.PNG" alt="Notifications" class="notification-icon">
-            <a href="/profile"><img src="../static/img/profile.jpeg" alt="Profile" class="profile-icon"></a>
+            <img src="../static/img/profile.jpeg" alt="clickable image " class="profile-icon">
+            <div id="popup-list" class="popup">
+                <ul>
+                    <li ><a href="/edit_your_infromation"></a>edit</li>
+                    <li><a href="/profile"> my profile</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -119,7 +125,7 @@
         {%endfor%}
     </div>
 
-    <script type="text/javascript" src="{{ url_for('static', filename='js/my_script1.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/profil.js') }}"></script>
 </body>
 
 </html>

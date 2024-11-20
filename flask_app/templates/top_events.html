@@ -16,7 +16,7 @@
             <ul>
                 <li><a href="/home">Home</a></li>
                 <li><a href="/top_events"> tope events</a></li>
-                <li><a href="/Categogies"> Categogies</a></li>
+                <li><a href="/categories"> categories</a></li>
                 <li><a href="/contact_us">Contact</a></li>
                 <li><button class="create-button"><a href="/create_event">Create</a></button></li>
             </ul>
@@ -28,9 +28,10 @@
     </div> 
     <h1>TO Events  </h1> 
     <div class="events">
+        {%for event in user_events%}
         <div class="event">
             <div class="event-header">
-                <h4>Event 1</h4>
+                <h4>{{event.name}}</h4>
                 <button class="more-options">
                     <span></span>
                     <span></span>
@@ -38,22 +39,32 @@
                 </button>
             </div>
 
-        <img src="{{ url_for('static', filename='img/friendship-day_world-friendship-day.jpg') }}" alt="">
+            <img src="{{ url_for('static', filename='img/' + event.photo) }}" alt="">
             <div class="event-footer">
                 <div class="user">
                     <img src="{{ url_for('static', filename='img/logo.PNG') }}" alt="">
-                    <h3>user name 1</h3>
+                    <h3>{{event.poster.first_name}}</h3>
                 </div>
                 <div class="likes">
+                    <form action="/groups/add" method="post">
+                        <input type="hidden" value="{{event.id}}" name="events_id">
                     <button class="join-btn">Ask to Join</button>
+                </form>
+                <form action="/groups/delete" method="post">
+                    <input type="hidden" value="{{event.id}}" name="events_id">
+                <button class="join-btn">Remove from group</button>
+            </form>
                     <div class="mamou">
                         <h4>61</h4>
                         <img src="{{ url_for('static', filename='img/heart.PNG') }}" alt="">
                     </div>
                 </div>
-            </div>
+            </div> 
+        
         </div>
+        {%endfor%}
     </div>
+
 
 </body>
 </html>

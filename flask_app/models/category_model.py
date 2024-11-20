@@ -36,11 +36,13 @@ class Category :
 
     @classmethod 
     def intersts(cls,data):
-        query="select categories* from  users join intersts on users.id=intersts.user_id join categories on insrests.categor_id=categories.id  where users.id=%(id)s"
+        query="SELECT * FROM categories WHERE categories.id NOT IN ( SELECT category_id FROM interests WHERE interests.user_id = %(user_id)s );"
         result=connectToMySQL(DB).query_db(query,data) 
-        if result :
-            return cls(result[0])
-        return False
+        all_categories=[]
+        for row in result:
+            all_categories.append(cls(row))
+        return all_categories
+    
     @staticmethod
     def validate(data):
         is_valid=True
@@ -50,4 +52,5 @@ class Category :
         elif Category.get_by_category({"category_name": data['category_name']}):
             flash("category already taken", "category_name")
             is_valid = False
-        return is_valid
+        return is_valid 
+    # @staticmethod

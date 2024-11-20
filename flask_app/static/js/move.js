@@ -1,4 +1,5 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () 
+{
   const slideBox = document.getElementById("slideBox");
   const topLayer = document.querySelector(".topLayer");
 
