@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,67 +7,29 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/nave_style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_home_after_login.css') }}">
 </head>
-
 <body>
     <div class="navbar">
         <div class="logo">
             <img src="{{ url_for('static', filename='img/logo.PNG') }}" alt="">
             <h1>TFARHIDA</h1>
         </div>
-        <div class="">
-            <ul>
-                <li><a href="/home">Home</a></li>
-                <li><a href="/top_events"> Top Events</a></li>
-                <li><a href="/categories"> Categories</a></li>
-                <li><a href="/contact_us">Contact</a></li>
-                <li><button class="create-button"><a href="/event">Create</a></button></li>
-            </ul>
+        <div style="display: flex;">
+            <li><a href="/home">Home</a></li>
+            <li><a href="/top_events"> Top Events</a></li>
+            <li><a href="/categories"> Categories</a></li>
+            <li><a href="/contact_us">Contact</a></li>
+            <li><button class="create-button"><a href="/event">Create</a></button></li>
+        </ul>
         </div>
         <div class="right_icons">
             <img src="../static/img/notification.PNG" alt="Notifications" class="notification-icon">
-            <img src="../static/img/profile.jpeg" alt="clickable image " class="profile-icon">
-            <div id="popup-list" class="popup">
-                <ul>
-                    <li ><a href="/edit_your_infromation"></a>edit</li>
-                    <li><a href="/profile"> my profile</a></li>
-                </ul>
-            </div>
+            <a href="/profile"><img src="../static/img/profile.jpeg" alt="Profile" class="profile-icon"></a>
         </div>
-    </div>
-
-    <div id="home" class="second_container">
-        <img src="{{ url_for('static', filename='img/lastt.jpg') }}" alt="">
-        <h2>
-            FEDED OOU DHARBEK EL GLGA?
-            <br>
-            TFARHIDA ANDHA EL HAL LIK!
-        </h2>
-
-        <div class="story">
-            <div>
-                <h3>STORIES</h3>
-            </div>
-            <div class="storys">
-                <img src="../static/img/2020-11-01_142354_loisirs-d-ete-bc-atlas-for-men-b2d279-0@1x-1-1024x576.jpg"
-                    alt="">
-                <img src="../static/img/240_F_409929061_pTKNZpllDH5KlMJu6uKaApNVSGUlP294.jpg" alt="">
-                <img src="../static/img/3018022022143229.jpg" alt="">
-                <img src="{{ url_for('static', filename='img/Capture.PNG') }}" alt="">
-                <img src="../static/img/camping-friends-toasting-stockcake.jpg" alt="">
-                <img src="../static/img/hammamet-8.jpg" alt="">
-                <img src="../static/img/1000_F_721305878_yBl76wZKsZ3vc4Z7NvOumLcv3kEDIpOh.jpg" alt="">
-                <img src="../static/img/1000_F_721305878_yBl76wZKsZ3vc4Z7NvOumLcv3kEDIpOh.jpg" alt="">
-                <img src="../static/img/1000_F_721305878_yBl76wZKsZ3vc4Z7NvOumLcv3kEDIpOh.jpg" alt="">
-            </div>
-        </div>
-    </div>
-    <div>
-        {% for category in loggedin_user.interests %}
-            <a href="/home/{{category['category_id']}}"> {{category['category_name']}} </a>
-        {%endfor%}
-    </div>
+    </div> 
+    <div></div>
+    <h1>categories</h1> 
     <div class="events">
-        {%for event in my_interest_events%}
+        {%for event in all_events%}
         <div class="event">
             <div class="event-header">
                 <h4>{{event.name}}</h4>
@@ -101,7 +62,7 @@
                     <h3>{{event.poster.first_name}}</h3>
                 </div>
                 <div class="likes">
-                    {% if event.poster.id != loggedin_user.id %}
+                    {% if event.poster.id == loggedin_user.id %}
                         {% if loggedin_user.id in event.joined_users %}
                         
                         <form action="/groups/delete" method="post">
@@ -125,7 +86,5 @@
         {%endfor%}
     </div>
 
-    <!-- <script type="text/javascript" src="{{ url_for('static', filename='js/profil.js') }}"></script> -->
 </body>
-
 </html>

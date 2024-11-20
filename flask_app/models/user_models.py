@@ -48,11 +48,12 @@ class User:
     @classmethod
     def get_interets(cls, data):
         query=""" SELECT * FROM tfarhida_schema.interests
+                    join  categories on categories.id = interests.category_id
                     WHERE tfarhida_schema.interests.user_id = %(user_id)s;"""
         results=connectToMySQL(DB).query_db(query, data) 
         all_categories=[]
         for row in results:
-            all_categories.append(row['category_id'])
+            all_categories.append({'category_id':row['category_id'], 'category_name' :row['category_name']})
         return all_categories
     
 

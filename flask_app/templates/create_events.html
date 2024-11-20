@@ -35,8 +35,8 @@
                 <select name="categories_id" id="event-type" placeholder="Select an item" required> 
                     
                     <option value="" disabled selected>Select an item</option>
-                    {%for category in all_categories%} 
-                        <option value="{{category.id}}">{{category.category_name}}</option> 
+                    {%for category in loggedin_user.interests%} 
+                        <option value="{{category['category_id']}}">{{category['category_name']}}</option> 
                     {%endfor%}
                 </select>
 

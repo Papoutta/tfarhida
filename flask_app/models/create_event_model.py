@@ -17,6 +17,16 @@ class Event:
         self.joined_users=Event.get_joined_users({"events_id": self.id})
 
 
+    @classmethod
+    def get_my_events(cls,data):
+        query = "select * from events where users_id = %(users_id)s;"
+        results=connectToMySQL(DB).query_db(query,data) 
+        all_events=[]
+        for row in results:
+            all_events.append(cls(row))
+        return all_events
+
+
     
     @classmethod
     def save(cls,data):
@@ -47,6 +57,15 @@ class Event:
     def get_user_events(cls,data):
         query="select * from events  where categories_id =%(categories_id)s;"
         results=connectToMySQL(DB).query_db(query,data) 
+        all_events=[]
+        for row in results:
+            all_events.append(cls(row))
+        return all_events
+    
+    @classmethod
+    def get_all_events(cls):
+        query="select * from events;"
+        results=connectToMySQL(DB).query_db(query) 
         all_events=[]
         for row in results:
             all_events.append(cls(row))

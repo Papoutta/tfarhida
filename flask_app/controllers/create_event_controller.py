@@ -17,8 +17,8 @@ def allowed_file(filename):
 
 @app.route('/event')
 def event():
-    all_categories=Category.get_all()
-    return render_template('create_events.html',all_categories=all_categories)  
+    loggedin_user= User.get_user({"id":session['user_id'] })
+    return render_template('create_events.html',loggedin_user=loggedin_user)  
 
 
 # Route to create an event
@@ -51,7 +51,7 @@ def create_event():
         Event.save(data)   
         loggedin_user= User.get_user({"id":session['user_id'] })
 
-        return redirect(f'/home/{loggedin_user.interests[0]}')
+        return redirect(f'/home/{loggedin_user.interests[0]["category_id"]}')
         
     #     # Flash success and render a template to display the uploaded image
     #     flash('Image successfully uploaded and event created!')

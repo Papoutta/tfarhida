@@ -1,6 +1,7 @@
 from flask_app import app
-from flask import render_template
-from flask_app.models.category_model import Category 
+from flask import render_template, session
+from flask_app.models.create_event_model import Event 
+from flask_app.models.user_models import User 
 
 
 ###################### top events ############################################
@@ -12,4 +13,6 @@ def top_events():
 
 @app.route("/categories") 
 def categories():
-    return render_template("catgorise.html")
+    all_events = Event.get_all_events()
+    loggedin_user= User.get_user({"id":session['user_id'] })
+    return render_template("categories.html", all_events = all_events, loggedin_user =loggedin_user )
