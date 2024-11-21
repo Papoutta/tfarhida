@@ -64,7 +64,6 @@
         {%endfor%}
     </div>
     <div class="events">
-        {%for event in my_interest_events%}
         <div class="event">
             <div class="event-header">
                 <h4>{{event.name}}</h4>
@@ -84,6 +83,10 @@
                     <div style="display: flex; gap: 20px; align-items: center;">
                         <h1>Date :</h1>
                         <h2>{{event.date}}</h2>
+                    </div>
+                    <div>
+                        <h1>Additional Informations :</h1>
+                        <p>{{event.additional_information}}</p>
                     </div>
                     <div>
                         <a href="/events/{{event.id}}" class="btn btn-primary rounded">See More</a>
@@ -111,7 +114,19 @@
                     {% endif %}
 
                     {% endif %}
-                    
+                    <div class="comment">
+                        <form action="/comment" method="post">
+                            <div class="form-floating d-flex"> 
+                                <input type="hidden" value="{{event.id}}" name="events_id">
+                                <textarea class="form-control" name="comment" placeholder="Leave a comment here" id="floatingTextarea"></textarea>  
+                                <button type="submit">ok</button>
+                                
+                            </div>
+                        </form>
+                        {%for comment in event.comment %} 
+                        <p>{{comment.comment}}</p> 
+                        {%endfor%}
+                    </div>
                     <div class="mamou">
 
                         <h4>{{event.num_likes['like_count']}}</h4>
@@ -134,7 +149,6 @@
                 </div>
             </div>
         </div>
-        {%endfor%}
     </div>
 
     <!-- <script type="text/javascript" src="{{ url_for('static', filename='js/profil.js') }}"></script> -->

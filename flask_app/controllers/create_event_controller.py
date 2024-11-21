@@ -69,8 +69,9 @@ def add_to_group():
     }
     Event.add_to_group(data)
     loggedin_user= User.get_user({"id":session['user_id'] })
+    id = loggedin_user.interests[0]['category_id']
 
-    return redirect(f'/home/{loggedin_user.interests[0]}')
+    return redirect(f'/home/{id}')
 
 @app.route('/groups/delete', methods=['post'])
 def delete_from_group():
@@ -80,5 +81,18 @@ def delete_from_group():
     }
     Event.delete_from_group(data)
     loggedin_user= User.get_user({"id":session['user_id'] })
+    id = loggedin_user.interests[0]['category_id']
+    return redirect(f'/home/{id}')
 
-    return redirect(f'/home/{loggedin_user.interests[0]}')
+@app.route('/events/<int:id>')
+def show_event(id):
+    loggedin_user= User.get_user({"id":session['user_id'] })
+    event=Event.get_event_by_id({'id': id})
+    all_accepted_users= Event.get_accepted_users({'id':id})
+    print("************************************************")
+    print(all_accepted_users)
+    print(loggedin_user.id)
+    if loggedin_user.id in all_accepted_users:
+        return render_template('one_event.html',loggedin_user = loggedin_user, event = event)
+    id = loggedin_user.interests[0]['category_id']
+    return redirect(f'/home/{id}')

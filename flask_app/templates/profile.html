@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">  
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_home_after_login.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/nave_style.css') }}">
     <title>Document</title>
 </head>
 
@@ -20,34 +21,32 @@
         <div class="">
             <ul>
                 <li><a href="/home">Home</a></li>
-                <li><a href="/top_events"> tope events</a></li>
-                <li><a href="/Categogies"> Categogies</a></li>
+                <li><a href="/top_events"> Top Events</a></li>
+                <li><a href="/categories"> Categories</a></li>
                 <li><a href="/contact_us">Contact</a></li>
                 <li><button class="create-button"><a href="/event">Create</a></button></li>
+                <!-- <li> <a href="/logout">Logout</a> </li> -->
             </ul>
         </div>
-        <div class="right_icons">
+        <div class="right_icons">  
             <a href="/logout"></a><img src="../static/img/png-clipart-computer-icons-door-business-door-furniture-building.png" alt="Notifications" class="notification-icon">
-            <div style="text-align: center; margin-top: 50px;">
-                <a href="/edit_your_information"><img src="../static/img/profile.jpeg" alt="Profile" class="profile-icon"></a>
-        
-            
-            </div>
+            <a href="/profile"><img src="../static/img/profile.jpeg" alt="Profile" class="profile-icon"></a>
         </div>
-
-    <div class="d-flex justify-content-center align-items-end" style="height: 250px; background-color: rosybrown;"></div>
-    <div class="border border-black"
-        style="width: 150px; height: 150px; border-radius: 50%; margin-top: -75px; margin-left : 45%">
-        <img style="width: 100%; border-radius: 50%" src="{{ url_for('static', filename='img/logo.PNG') }}" alt="">
     </div>
-    <div class="container">
-        <div class="mt-4 d-flex align-items-center gap-4 text-center">
+
+    <div style="background-color: rosybrown; height: 200px;"> 
+        <div style="width: 200px; height: 200px; border-radius: 50%; margin-left: 43%; padding-top: 100px;" >
+            <img src="{{ url_for('static', filename='img/logo.PNG') }}" class="m-0 border border-2 border-black" style="width: 100%; border-radius: 50% ">
+        </div>
+    </div>
+    <div class="container" style="margin-top: 150px;"> 
+        <div class="d-flex align-items-center gap-4 text-center">
             <h1>My interests :</h1>
             {% for category in loggedin_user.interests%}
             <p class="m-0">{{category['category_name']}}</p>
             {%endfor%}
         </div>
-        <div class="mt-4 d-flex flex-column gap-4">
+        <div class="mt-5 d-flex flex-column gap-4">
             <h1>My events :</h1>
             {%for event in my_events%}
             <div class="event">
@@ -60,7 +59,7 @@
                     </button>
                 </div>
                 <div style="display: flex; gap: 30px;">
-                    <img src="{{ url_for('static', filename='img/' + event.photo) }}" alt="">
+                    <img src="{{ url_for('static', filename='img/' + event.photo) }}" id="img" alt="">
                     <div style="display: flex; flex-direction: column; gap: 20px;">
                         <div style="display: flex; gap: 20px; align-items: center;">
                             <h1>Place :</h1>
@@ -82,6 +81,28 @@
                         <h3>{{event.poster.first_name}}</h3>
                     </div>
                 </div> 
+                {% for friend in event.joined_users_with_names %}
+                {% if friend['status'] == 'Pending' %}
+                        <h1 class="text-danger"> {{friend['username']}} </h1 class="text-danger">
+                            <form action="/groups/deny_status" method="post">
+                                <input type="hidden" value="{{event.id}}" name="events_id">
+                                <input type="hidden" value="{{friend['users_id']}}" name="users_id">
+                                <button class="join-btn">Deny</button>
+                            </form>
+                            <form action="/groups/accept_status" method="post">
+                                <input type="hidden" value="{{event.id}}" name="events_id">
+                                <input type="hidden" value="{{friend['users_id']}}" name="users_id">
+                                <button class="join-btn">Accept</button>
+                            </form>
+                            {% elif friend['status'] == 'Accepted' %}
+                            <h1 class="text-danger"> {{friend['username']}} </h1 class="text-danger">
+                        <form action="/groups/deny_status" method="post">
+                            <input type="hidden" value="{{event.id}}" name="events_id">
+                            <input type="hidden" value="{{friend['users_id']}}" name="users_id">
+                            <button class="join-btn">Deny</button>
+                        </form>
+                        {%endif%}
+                {%endfor%}
             </div>
             {%endfor%}
         </div>

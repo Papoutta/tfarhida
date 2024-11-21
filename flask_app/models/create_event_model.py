@@ -17,8 +17,27 @@ class Event:
         self.poster = user_models.User.get_user({"id":self.users_id})
         self.num_likes= likes_models.Like.number({"event_id":self.id})
         self.joined_users=Event.get_joined_users({"events_id": self.id})
+        self.joined_users_with_names=Event.get_joined_users_with_names({"events_id": self.id})
         self.comment=reviews_models.Reviews.commente({"events_id":self.id}) 
+        self.like_users=Event.get_like_users({"event_id": self.id})
+
         
+
+
+    @classmethod
+    def deny_status(cls, data):
+        query="""
+                UPDATE tfarhida_schema.groups SET status='Denied' 
+                WHERE users_id = %(users_id)s AND events_id=%(events_id)s;
+                """
+        return connectToMySQL(DB).query_db(query,data)
+    @classmethod
+    def accept_status(cls, data):
+        query="""
+                UPDATE tfarhida_schema.groups SET status='Accepted' 
+                WHERE users_id = %(users_id)s AND events_id=%(events_id)s;
+                """
+        return connectToMySQL(DB).query_db(query,data)
 
 
     @classmethod
@@ -40,7 +59,7 @@ class Event:
 
     @classmethod
     def add_to_group(cls, data):
-        query = "INSERT INTO tfarhida_schema.groups (users_id,events_id) values (%(users_id)s,%(events_id)s); "
+        query = "INSERT INTO tfarhida_schema.groups (users_id,events_id, status) values (%(users_id)s,%(events_id)s, 'Pending'); "
         return connectToMySQL(DB).query_db(query,data) 
     
     @classmethod
@@ -76,10 +95,51 @@ class Event:
         return all_events
     
     @classmethod
+    def get_event_by_id(cls, data):
+        query="select * from events where id = %(id)s;"
+        results=connectToMySQL(DB).query_db(query,data) 
+        return cls(results[0])
+    
+    @classmethod
     def get_joined_users(cls,data):
         query="""SELECT * FROM tfarhida_schema.groups
 
                     WHERE tfarhida_schema.groups.events_id = %(events_id)s;"""
+        results=connectToMySQL(DB).query_db(query, data) 
+        all_users=[]
+        for row in results:
+            all_users.append(row['users_id'])
+        return all_users
+    
+    @classmethod
+    def get_like_users(cls,data):
+        query = """ select * from tfarhida_schema.likes
+                where likes.event_id = %(event_id)s;
+                    """
+        results=connectToMySQL(DB).query_db(query, data) 
+        all_users=[]
+        for row in results:
+            all_users.append(row['user_id'])
+        return all_users
+
+    @classmethod
+    def get_joined_users_with_names(cls,data):
+        query="""SELECT * FROM tfarhida_schema.groups
+                JOIN users ON users.id= tfarhida_schema.groups.users_id
+                    WHERE tfarhida_schema.groups.events_id = %(events_id)s;"""
+        results=connectToMySQL(DB).query_db(query, data) 
+        all_users=[]
+        for row in results:
+            all_users.append({'users_id':row['users_id'], 'username':row['first_name'], 'status': row['status']})
+        return all_users
+    
+    @classmethod
+    def get_accepted_users(cls, data):
+        query="""
+            SELECT * FROM tfarhida_schema.groups
+                JOIN users ON users.id= tfarhida_schema.groups.users_id
+                    WHERE tfarhida_schema.groups.events_id = %(id)s and tfarhida_schema.groups.status = "Accepted";
+        """
         results=connectToMySQL(DB).query_db(query, data) 
         all_users=[]
         for row in results:

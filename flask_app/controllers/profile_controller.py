@@ -31,3 +31,16 @@ def update(id):
         User.update(data) 
         return redirect("/profile") 
     return redirect("/profile/<int:id>") 
+
+
+@app.route("/groups/deny_status", methods=['post'])
+def deny_status():
+    Event.deny_status(request.form)
+    return redirect('/profile')
+
+
+
+@app.route("/groups/accept_status", methods=['post'])
+def accept_status():
+    Event.accept_status(request.form)
+    return redirect('/profile')

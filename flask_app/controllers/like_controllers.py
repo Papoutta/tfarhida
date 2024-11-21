@@ -39,7 +39,5 @@ def comment():
         "users_id": session['user_id']
     }
     Reviews.reviews(data)
-    user= User.get_user({'id': session['user_id']})
-    id= user.interests[0]['category_id'] 
-
-    return redirect(f'/home/{id}')   
+    event_id=request.form['events_id']
+    return redirect(f'/events/{event_id}')   

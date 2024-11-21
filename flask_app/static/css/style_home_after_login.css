@@ -153,6 +153,9 @@
 .events img{  
     width: 30%;
 }
+ #img{
+    width: 400px;
+ }
 .event {
     width: 80%;
     max-width: 1300px;
