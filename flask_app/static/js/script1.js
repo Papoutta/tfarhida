@@ -1,9 +1,12 @@
 // Array of image sources
 const photos = [
-    "static/img/3018022022143229.jpg",
+    "static/img/lastt1.jpg",
     "static/img/second_one.jpg",
-    "static/img/third_one.jpg",
-    "static/img/fourth_one.jpg"
+    "static/img/page (1).jpg",
+    "static/img/page (2).jpg",
+    "static/img/page (3).jpg",
+
+
 ];
 let Index = 0;
 
@@ -28,5 +31,5 @@ function changeImage() {
 
 // Change the image every 4 seconds (5000 milliseconds)
 // onload.apply(setInterval(changeImage, 4000))
-setInterval(changeImage, 4000)
+setInterval(changeImage, 3000)
 

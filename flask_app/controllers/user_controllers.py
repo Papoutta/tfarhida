@@ -8,7 +8,7 @@ from flask_bcrypt import Bcrypt
 bcrypt=Bcrypt(app)
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('home.html') 
 
 @app.route("/users") 
 def index():
@@ -65,7 +65,7 @@ def home_after_login(category_id):
     print("***************")
     print(loggedin_user.interests)  
     # print(loggedin_user.id)
-    return render_template('home_after_login.html',my_interest_events = my_interest_events, loggedin_user=loggedin_user)
+    return render_template('home_after_login.html' ,my_interest_events = my_interest_events, loggedin_user=loggedin_user)
 
 
 @app.route("/welcome",methods=["POST"])

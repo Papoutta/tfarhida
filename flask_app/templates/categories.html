@@ -11,56 +11,56 @@
 <body>
     <div class="navbar">
         <div class="logo">
-            <img src="{{ url_for('static', filename='img/logo.PNG') }}" alt="">
+            <img src="{{ url_for('static', filename='img/log_happy.png') }}"  class="log"alt="">
             <h1>TFARHIDA</h1>
         </div>
-        <div style="display: flex;">
-            <li><a href="/home">Home</a></li>
-            <li><a href="/top_events"> Top Events</a></li>
-            <li><a href="/categories"> Categories</a></li>
-            <li><a href="/contact_us">Contact</a></li>
-            <li><button class="create-button"><a href="/event">Create</a></button></li>
-        </ul>
+        <div class="">
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/top_events"> Top Events</a></li>
+                <li><a href="/categories"> Categories</a></li>
+                <li><a href="/contact_us">Contact</a></li>
+                <li><button class="create-button"><a href="/event">Create</a></button></li>
+                <li>  </li>
+            </ul>
         </div>
-        <div class="right_icons">
-            <a href="/profile"><img src="../static/img/profile.jpeg" alt="Profile" class="profile-icon"></a>
+        <div class="right_icons"> 
+        <a href="/profile"><img src="" alt="Profile" class="profile-icon"></a>
+            <a href="/logout"><img src="../static/img/logut.png" alt=""></a>
         </div>
-    </div> 
-    <div></div>
+    </div>
+  
     <h1 class="mt-2 text-center">All Events</h1> 
     <div class="events">
         {%for event in all_events%}
-        <div class="event">
+        <div class="event"> 
+            <div class="user">
+                    <img src="{{ url_for('static', filename='img/logo.PNG') }}" alt="">
+                    <h3>{{event.poster.first_name}}</h3>
+                </div>
             <div class="event-header">
                 <h4>{{event.name}}</h4>
-                <button class="more-options">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+               
             </div>
             <div style="display: flex; gap: 30px;">
                 <img src="{{ url_for('static', filename='img/' + event.photo) }}" alt="">
                 <div style="display: flex; flex-direction: column; gap: 20px;">
                     <div style="display: flex; gap: 20px; align-items: center;">
-                        <h1>Place :</h1>
-                        <h2>{{event.place}}</h2>
+                        <h1 class="h1h" >Place :</h1>
+                        <h2 class="h2h">{{event.place}}</h2>
                     </div>
                     <div style="display: flex; gap: 20px; align-items: center;">
-                        <h1>Date :</h1>
-                        <h2>{{event.date}}</h2>
+                        <h1 class="h1h">Date :</h1>
+                        <h2 class="h2h">{{event.date}}</h2>
                     </div>
                     <div>
-                        <h1>Additional Informations :</h1>
-                        <p>{{event.additional_information}}</p>
-                    </div>                    
+                        <h1 class="h1h">Additional Informations :</h1>
+                        <p class="h2h">{{event.additional_information}}</p>
+                    </div>             
                 </div>
             </div>
             <div class="event-footer">
-                <div class="user">
-                    <img src="{{ url_for('static', filename='img/logo.PNG') }}" alt="">
-                    <h3>{{event.poster.first_name}}</h3>
-                </div>
+                
                 <div class="likes">
                     {% if event.poster.id == loggedin_user.id %}
                         {% if loggedin_user.id in event.joined_users %}
@@ -76,8 +76,19 @@
                         </form>
                         {% endif %}
                         <div class="mamou">
-                            <h4>61</h4>
-                            <img src="{{ url_for('static', filename='img/heart.PNG') }}" alt="">
+                            <h4>{{event.num_likes['like_count']}}</h4> 
+                       
+                            <form action="/likes/add" method="post">
+                                <input type="hidden" value="{{event.id}}" name="event_id">
+                                <button type="submit" class="like-button " id="dont_likes"><img src="../static/img/disliked-removebg-preview.png" alt=""></button>
+    
+                            </form>
+                            <form action="/likes/delete" method="post">
+                                <input type="hidden" value="{{event.id}}" name="event_id">
+                                <!-- <input type="submit" id="dont_likes"> -->
+                                <button type="submit" id="dont_likes"><img src="../static/img/liked-removebg-preview.png" alt=""></button>
+                            </form>
+                        </div>
                         </div>
                     {% endif %}
                 </div>
