@@ -195,9 +195,9 @@
 }
 
 .event-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+   
+    
+   
 }
 
 .user{
@@ -221,13 +221,24 @@
     cursor: pointer;
 }
 
-.likes {
+.likes { 
+
     display: flex;
-    justify-content: center;
-    gap: 5px;  
+    justify-content:space-between;
+    
+   
+
+      
 
 }
-
+.h1h{ 
+    font-size: large; 
+    
+} 
+.h2h{ 
+    font-size: large; 
+    color:brown;
+}
 .categoriesss { 
     
     display: flex; 
@@ -238,7 +249,16 @@
 
   
    
-}  
+}   
+#comment {
+ 
+  
+ font-family: cursive;
+}
+#comment h3{ 
+    font-family: cursive;
+
+}
 .categoriesss a{ 
     text-decoration: none; 
     color: #333;
@@ -252,4 +272,21 @@
     gap: 10%; 
     font-size: xx-large; 
     
+}  
+#dont_likes img{
+    width: 30px;
+} 
+#dont_likes{ 
+    border: none;  
+    background-color: white;
+} 
+.event-footer{ 
+    padding-top: 10px; 
+
+} 
+.event-footer p{
+    background-color: #ece8e8; 
+    border-radius: 50px;
 }
+
+

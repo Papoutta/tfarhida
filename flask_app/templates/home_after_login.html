@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Document</title> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/nave_style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_home_after_login.css') }}">
 </head>
@@ -12,7 +14,7 @@
 <body>
     <div class="navbar">
         <div class="logo">
-            <img src="{{ url_for('static', filename='img/logo.PNG') }}" alt="">
+            <img src="{{ url_for('static', filename='img/log_happy.png') }}"  class="log"alt="">
             <h1>TFARHIDA</h1>
         </div>
         <div class="">
@@ -22,11 +24,12 @@
                 <li><a href="/categories"> Categories</a></li>
                 <li><a href="/contact_us">Contact</a></li>
                 <li><button class="create-button"><a href="/event">Create</a></button></li>
-                <li> <a href="/logout">Logout</a> </li>
+                <li>  </li>
             </ul>
         </div>
         <div class="right_icons"> 
-            <a href="/profile"><img src="../static/img/profile.jpeg" alt="Profile" class="profile-icon"></a>
+        <a href="/profile"><img src="" alt="Profile" class="profile-icon"></a>
+            <a href="/logout"><img src="../static/img/logut.png" alt=""></a>
         </div>
     </div>
 
@@ -63,38 +66,37 @@
     </div>
     <div class="events">
         {%for event in my_interest_events%}
-        <div class="event">
+        <div class="event"> 
+            <div class="user">
+                <img src="{{ url_for('static', filename='img/' + event.poster.photo) }}"
+                    alt="{{event.poster.photo}}">
+                <h3>{{event.poster.first_name}}</h3>
+            </div>
             <div class="event-header">
-                <h4>{{event.name}}</h4>
-                <button class="more-options">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+                <h4 class="text-center ">{{event.name}}</h4>
+                
             </div>
             <div style="display: flex; gap: 30px;">
                 <img src="{{ url_for('static', filename='img/' + event.photo) }}" alt="">
                 <div style="display: flex; flex-direction: column; gap: 20px;">
                     <div style="display: flex; gap: 20px; align-items: center;">
-                        <h1>Place :</h1>
-                        <h2>{{event.place}}</h2>
+                        <h1 class="h1h" >Place :</h1>
+                        <h2 class="h2h">{{event.place}}</h2>
                     </div>
                     <div style="display: flex; gap: 20px; align-items: center;">
-                        <h1>Date :</h1>
-                        <h2>{{event.date}}</h2>
+                        <h1 class="h1h">Date :</h1>
+                        <h2 class="h2h">{{event.date}}</h2>
                     </div>
                     <div>
-                        <h1>Additional Informations :</h1>
-                        <p>{{event.additional_information}}</p>
+                        <h1 class="h1h">Additional Informations :</h1>
+                        <p class="h2h">{{event.additional_information}}</p>
                     </div>
-                </div>
+                    
+                </div> 
+                
             </div>
             <div class="event-footer">
-                <div class="user">
-                    <img src="{{ url_for('static', filename='img/' + event.poster.photo) }}"
-                        alt="{{event.poster.photo}}">
-                    <h3>{{event.poster.first_name}}</h3>
-                </div>
+               
                 <div class="likes">
                     {% if event.poster.id != loggedin_user.id %}
                     {% if loggedin_user.id in event.joined_users %}
@@ -110,39 +112,46 @@
                     {% endif %}
 
                     {% endif %}
-                    <div class="comment">
+                     <div class="comment">
                         <form action="/comment" method="post">
-                            <div class="form-floating d-flex"> 
+                            <div class=" d-flex"> 
                                 <input type="hidden" value="{{event.id}}" name="events_id">
-                                <textarea class="form-control" name="comment" placeholder="Leave a comment here" id="floatingTextarea"></textarea>  
-                                <button type="submit">ok</button>
-                                
+                                <input class="form-control h-5" placeholder="Leave a comment here" name="comment" required id="floatingTextareaDisabled">                             
+                                <button type="submit"  class="btn btn-dark w-10 h-5">ok</button>
                             </div>
-                        </form>
-                        {%for comment in event.comment %} 
-                        <p>{{comment.comment}}</p> 
-                        {%endfor%}
+                        </form> 
+                        <div id="comment">
+                            {%for comment in event.comment %} 
+                            <p>❤{{comment.comment}}</p> 
+                            {%endfor%}
+                        </div>
+                        
                     </div>
+                   
                     <div class="mamou">
 
-                        <h4>{{event.num_likes['like_count']}}</h4>
+                        <h4>{{event.num_likes['like_count']}}</h4> 
+                       
                         <form action="/likes/add" method="post">
                             <input type="hidden" value="{{event.id}}" name="event_id">
-                            <button type="submit" class="like-button " id="likes">🥰</button>
+                            <button type="submit" class="like-button " id="dont_likes"><img src="../static/img/disliked-removebg-preview.png" alt=""></button>
 
                         </form>
                         <form action="/likes/delete" method="post">
                             <input type="hidden" value="{{event.id}}" name="event_id">
                             <!-- <input type="submit" id="dont_likes"> -->
-                            <button type="submit" id="dont_likes">🙂</button>
+                            <button type="submit" id="dont_likes"><img src="../static/img/liked-removebg-preview.png" alt=""></button>
                         </form>
                     </div>
+                   
 
 
 
                 </div>
             </div>
+
         </div>
+        
         {%endfor%}
     </div>
 
