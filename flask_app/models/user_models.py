@@ -45,6 +45,14 @@ class User:
             return cls(result[0]) 
         return False  
     
+    @classmethod 
+    def get_all_users(cls):
+        query="select *from users;"
+        result=connectToMySQL(DB).query_db(query) 
+        if result:
+            return result
+        return False  
+    
     @classmethod
     def get_interets(cls, data):
         query=""" SELECT * FROM tfarhida_schema.interests

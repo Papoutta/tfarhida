@@ -73,7 +73,7 @@
             <div class="col-10 m-5">
                 <div class="card">
                     <div class="text-center card-header">
-                        <h1 class="mb-4">Edit Category</h1>
+                        <h1 class="mb-4">All Categories</h1>
                     </div>
                     <div class="card-body">
                         <div class="text-center">
@@ -86,22 +86,18 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="staticBackdropLabel">Edit Category</h5>
+                                        <h5 class="modal-title" id="staticBackdropLabel">List of categories</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
                                         <div class="col-12">
                                             <div class="mb-3">
-                                                <label for="name" class="form-label">List of categories</label>
                                                 <select class="form-select" aria-label="Default select example">
-                                                    <option selected>Open this select menu</option>
+                                                    <option selected>All categories</option>
                                                     {% for category in all_categories %}
                                                     <option>{{category.category_name}}</option>
                                                     {%endfor%}
                                                 </select>
-                                            </div>
-                                            <div class="text-end">
-                                                <input type="submit" class="btn btn-outline-primary" value="Edit" data-bs-dismiss="modal">
                                             </div>
                                         </div>
                                     </div>
@@ -133,7 +129,6 @@
         <table class="mt-5 table table-hover align-middle">
             <thead>
                 <tr>
-                    <th scope="col">Image</th>
                     <th scope="col">Full Name</th>
                     <th scope="col">Date of entry</th>
                     <th scope="col">Phone Number</th>
@@ -142,31 +137,15 @@
                 </tr>
             </thead>
             <tbody>
+                {% for user in all_users %}
                 <tr>
-                    <td><img src="" alt="User Image" class="rounded-circle" style="width: 40px; height: 40px;"></td>
-                    <td>Jane Cooper</td>
-                    <td>September 9, 2023</td>
-                    <td>(225) 555-0118</td>
-                    <td>jane@microsoft.com</td>
+                    <td>{{user.first_name}}  {{user.last_name}}</td>
+                    <td>{{user.created_at}}</td>
+                    <td>{{user.phone_number}}</td>
+                    <td>{{user.email}}</td>
                     <td><button class="btn btn-outline-danger btn-sm">DELETE</button></td>
                 </tr>
-                <tr>
-                    <td><img src="" alt="User Image" class="rounded-circle" style="width: 40px; height: 40px;"></td>
-                    <td>Floyd Miles</td>
-                    <td>August 2, 2023</td>
-                    <td>(205) 555-0100</td>
-                    <td>floyd@yahoo.com</td>
-                    <td><button class="btn btn-outline-danger btn-sm">DELETE</button></td>
-                </tr>
-                <tr>
-                    <td><img src="" alt="User Image" class="rounded-circle" style="width: 40px; height: 40px;"></td>
-                    <td>Ronald Richards</td>
-                    <td>September 24, 2024</td>
-                    <td>(302) 555-0107</td>
-                    <td>ronald@adobe.com</td>
-                    <td><button class="btn btn-outline-danger btn-sm">DELETE</button></td>
-                </tr>
-                
+                {% endfor%}
             </tbody>
         </table>
     </div>
