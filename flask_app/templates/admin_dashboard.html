@@ -143,7 +143,11 @@
                     <td>{{user.created_at}}</td>
                     <td>{{user.phone_number}}</td>
                     <td>{{user.email}}</td>
-                    <td><button class="btn btn-outline-danger btn-sm">DELETE</button></td>
+                    <td>
+                        <form action="/delete_user/{{user.id}}" , method="post">
+                            <button class="btn btn-outline-danger btn-sm">DELETE</button>
+                        </form>
+                    </td>>
                 </tr>
                 {% endfor%}
             </tbody>

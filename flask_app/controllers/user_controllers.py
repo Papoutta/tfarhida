@@ -47,11 +47,17 @@ def choose():
         print("==============================")
         print(c)
         Interests.creat({"user_id":session['user_id'] ,"category_id":int(c)}) 
-    return redirect(f"/home/{int(checked_options[0])}" )
+    user= User.get_user({'id': session['user_id']})
+    if user.role == 0:
+        return redirect(f"/home/{int(checked_options[0])}" )
+    else:
+        return redirect('/admin')
 
 
 @app.route('/home/<int:category_id>')
 def home_after_login(category_id):
+    if not 'user_id' in session:
+        return redirect('/')
     my_interest_events = Event.get_user_events({"categories_id":category_id})
     # user_events = Event.get_events_with_joined_users()
     loggedin_user= User.get_user({"id":session['user_id'] })
@@ -74,19 +80,18 @@ def login():
     session["user_id"]=user.id 
     print("*****************", user.interests[0])
     id= user.interests[0]['category_id']
-<<<<<<< HEAD
-    return redirect(f"/home/{id}") 
+    if user.role == 0:
+        return redirect(f"/home/{id}") 
+    else:
+        return redirect('/admin')
 
-=======
-    return redirect(f"/home/{id}")
->>>>>>> 23ccd96f2d90741d465cd60ad886f1e1ee009dd1
 
 @app.route("/contact_us") 
 def contact_us():
     return render_template("contact.html")
 
 
-# @app.route("/logout") 
-# def logout():
-#     session.clear()
-#     return redirect("/")  
+@app.route("/logout") 
+def logout():
+    session.clear()
+    return redirect("/")  
