@@ -1,0 +1,12 @@
+*{ 
+    margin: 0 auto ; 
+    padding: 0 auto;
+} 
+
+    .events {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }  
+    
