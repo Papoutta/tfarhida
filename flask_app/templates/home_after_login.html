@@ -25,11 +25,10 @@
             </ul>
         </div>
         <div class="right_icons">
-            <img src="../static/img/notification.PNG" alt="Notifications" class="notification-icon">
             <img src="../static/img/profile.jpeg" alt="clickable image " class="profile-icon">
             <div id="popup-list" class="popup">
                 <ul>
-                    <li ><a href="/edit_your_infromation"></a>edit</li>
+                    <li><a href="/edit_your_infromation"></a>edit</li>
                     <li><a href="/profile"> my profile</a></li>
                 </ul>
             </div>
@@ -62,9 +61,9 @@
             </div>
         </div>
     </div>
-    <div>
+    <div class="categoriesss">
         {% for category in loggedin_user.interests %}
-            <a href="/home/{{category['category_id']}}"> {{category['category_name']}} </a>
+        <a href="/home/{{category['category_id']}}"> {{category['category_name']}} </a>
         {%endfor%}
     </div>
     <div class="events">
@@ -92,19 +91,18 @@
                     <div>
                         <h1>Additional Informations :</h1>
                         <p>{{event.additional_information}}</p>
-                    </div>                    
+                    </div>
                 </div>
             </div>
             <div class="event-footer">
                 <div class="user">
-                    <img src="{{ url_for('static', filename='img/' + event.poster.photo) }}" alt="{{event.poster.photo}}">
+                    <img src="{{ url_for('static', filename='img/' + event.poster.photo) }}"
+                        alt="{{event.poster.photo}}">
                     <h3>{{event.poster.first_name}}</h3>
                 </div>
                 <div class="likes">
-                    
                     {% if event.poster.id != loggedin_user.id %}
                     {% if loggedin_user.id in event.joined_users %}
-                    
                     <form action="/groups/delete" method="post">
                         <input type="hidden" value="{{event.id}}" name="events_id">
                         <button class="join-btn">Remove from group</button>
@@ -115,23 +113,40 @@
                         <button class="join-btn">Ask to Join</button>
                     </form>
                     {% endif %}
-                    
+
                     {% endif %}
+                    <div class="comment">
+                        <form action="/comment" method="post">
+                            <div class="form-floating d-flex"> 
+                                <input type="hidden" value="{{event.id}}" name="events_id">
+                                <textarea class="form-control" name="comment" placeholder="Leave a comment here" id="floatingTextarea"></textarea>  
+                                <button type="submit">ok</button>
+                                
+                            </div>
+                        </form>
+                        {%for comment in event.comment %} 
+                        <p>{{comment.comment}}</p> 
+                        {%endfor%}
+                    </div>
                     <div class="mamou">
+
                         <h4>{{event.num_likes['like_count']}}</h4>
-                        <form action="/likes/add" method="post"> 
+                        <form action="/likes/add" method="post">
                             <input type="hidden" value="{{event.id}}" name="event_id">
                             <button type="submit" class="like-button " id="likes">🥰</button>
-                            
+
                         </form>
-                        <form action="/likes/delete" method="post"> 
+                        <form action="/likes/delete" method="post">
                             <input type="hidden" value="{{event.id}}" name="event_id">
                             <!-- <input type="submit" id="dont_likes"> -->
-                            <button type="submit"   id="dont_likes">🙂</button>
+                            <button type="submit" id="dont_likes">🙂</button>
                         </form>
                     </div>
+
+
+
                 </div>
-            </div> 
+            </div>
         </div>
         {%endfor%}
     </div>

@@ -57,7 +57,7 @@ def home_after_login(category_id):
     loggedin_user= User.get_user({"id":session['user_id'] })
     # all_groups = Event.get_all_groups({"users_id":session['user_id'] })
     print("***************")
-    print(loggedin_user.interests)
+    print(loggedin_user.interests)  
     # print(loggedin_user.id)
     return render_template('home_after_login.html',my_interest_events = my_interest_events, loggedin_user=loggedin_user)
 
@@ -74,8 +74,12 @@ def login():
     session["user_id"]=user.id 
     print("*****************", user.interests[0])
     id= user.interests[0]['category_id']
+<<<<<<< HEAD
     return redirect(f"/home/{id}") 
 
+=======
+    return redirect(f"/home/{id}")
+>>>>>>> 23ccd96f2d90741d465cd60ad886f1e1ee009dd1
 
 @app.route("/contact_us") 
 def contact_us():
