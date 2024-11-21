@@ -54,6 +54,11 @@ class User:
         return False  
     
     @classmethod
+    def delete_user (cls, data):
+        query = "DELETE FROM users WHERE id = %(id)s"
+        return connectToMySQL(DB).query_db(query, data)
+    
+    @classmethod
     def get_interets(cls, data):
         query=""" SELECT * FROM tfarhida_schema.interests
                     join  categories on categories.id = interests.category_id

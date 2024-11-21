@@ -20,3 +20,8 @@ def create_category():
         Category.create(data)
         return redirect('/admin')
     return redirect('/admin')
+
+@app.route("/delete_user/<int:id>", methods = ['POST'])
+def delete_user(id):
+    User.delete_user({'id':id})
+    return redirect("/admin")
