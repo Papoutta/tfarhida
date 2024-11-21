@@ -74,12 +74,8 @@ def login():
     session["user_id"]=user.id 
     print("*****************", user.interests[0])
     id= user.interests[0]['category_id']
-<<<<<<< HEAD
     return redirect(f"/home/{id}") 
 
-=======
-    return redirect(f"/home/{id}")
->>>>>>> 23ccd96f2d90741d465cd60ad886f1e1ee009dd1
 
 @app.route("/contact_us") 
 def contact_us():
