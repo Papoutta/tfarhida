@@ -4,6 +4,7 @@ from flask import render_template,redirect,request,session,flash
 from flask_app.models.user_models import User  
 from flask_app.models.category_model import Category
 from flask_app.models.create_event_model import Event
+from flask_app.models.intersts_models import Interests
 
 
 @app.route('/profile')
@@ -22,15 +23,19 @@ def edite_your_information(id):
 
 @app.route("/edite_your_information/<int:id>/update",methods=["POST"]) 
 def update(id): 
-    if User.validate(request.form):
+    # if User.validate(request.form):
 
-        data={ 
-         **request.form, 
-            "id":id
-        } 
-        User.update(data) 
-        return redirect("/profile") 
-    return redirect("/profile/<int:id>") 
+    checked_options = request.form.getlist('choose')
+    print("*****************************", checked_options)
+    for c in checked_options: 
+        Interests.creat({"user_id":session['user_id'] ,"category_id":int(c)}) 
+    data={ 
+        **request.form, 
+        "id":id
+    } 
+    User.update(data) 
+    return redirect("/profile") 
+    # return redirect("/profile") 
 
 
 @app.route("/groups/deny_status", methods=['post'])

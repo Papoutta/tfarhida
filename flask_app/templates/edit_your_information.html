@@ -19,7 +19,7 @@
         <div class="checkbox">
             <div class="inter">
 
-                <h1 class="text-center Top-5">edit your informations</h1>
+                <h1 class="text-center Top-5">Edit your informations</h1>
 
                 <div>
                     <!-- test -->
@@ -57,7 +57,7 @@
                                             <label for="">Woman</label></span>
                                         <span>
                                             <input type="radio" name="gender" value="0" {% if user.gender==0
-                                                %}checked{%endif%}><label for="">main</label></span>
+                                                %}checked{%endif%}><label for="">Men</label></span>
                                     </span>
                                     {% for message in get_flashed_messages(category_filter=['gender'])%}
                                     <p class="text-danger">{{message}}</p>
@@ -67,7 +67,7 @@
                                     <h2>Interest</h2>
                                     {%for categories in all_categories %}
                                     <div class="mb-3 form-check d-flex gap-2 align-items-center ">
-                                        <input type="checkbox" name="choose" id="choose" value=""
+                                        <input type="checkbox" name="choose" id="choose" value="{{categories.id}}"
                                             class="form-check-input">
                                         <label for="choose"
                                             class="form-check-label">{{categories.category_name}}</label>

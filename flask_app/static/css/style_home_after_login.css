@@ -269,6 +269,7 @@
 
 .mamou{
     display: flex;
+    align-items: center;
 } 
 .imgp{ 
     display: flex; 

@@ -8,7 +8,6 @@
 body {
     background-color: #eeeeee;
     color: #333;
-    padding: 20px;
 }
 
 /* smooth */
@@ -26,7 +25,6 @@ html {
     background-color: rgba(255, 255, 255, 0.89);
     position: fixed;
     z-index: 1000;
-    border-radius: 40px;
 }
 
 .navbar h1 {

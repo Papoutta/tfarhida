@@ -15,36 +15,40 @@
 
     <div class="navbar">
         <div class="logo">
-            <img src="{{ url_for('static', filename='img/logo.PNG') }}" alt="">
+            <img src="{{ url_for('static', filename='img/New_Logo.jpg') }}"  class="log"alt="">
             <h1>TFARHIDA</h1>
         </div>
         <div class="">
             <ul>
-                <li><a href="/home">Home</a></li>
+                <li><a href="/home/15">Home</a></li>
                 <li><a href="/top_events"> Top Events</a></li>
                 <li><a href="/categories"> Categories</a></li>
                 <li><a href="/contact_us">Contact</a></li>
                 <li><button class="create-button"><a href="/event">Create</a></button></li>
+                <li><button class="create-button"><a href="/logout">Logout</a></button></li>
                 <!-- <li> <a href="/logout">Logout</a> </li> -->
             </ul>
         </div>
-        <div class="right_icons">  
-            <a href="/logout"></a><img src="../static/img/png-clipart-computer-icons-door-business-door-furniture-building.png" alt="Notifications" class="notification-icon">
-            <a href="/profile"><img src="../static/img/profile.jpeg" alt="Profile" class="profile-icon"></a>
+        <div class="right_icons">          
+            <a href="/edite_your_information/{{session['user_id']}}"><img src="../static/img/profile.jpeg" alt="Profile" class="profile-icon"></a>
         </div>
     </div>
 
     <div style="background-color: rosybrown; height: 200px;"> 
-        <div style="width: 200px; height: 200px; border-radius: 50%; margin-left: 43%; padding-top: 100px;" >
-            <img src="{{ url_for('static', filename='img/logo.PNG') }}" class="m-0 border border-2 border-black" style="width: 100%; border-radius: 50% ">
+        <div style="width: 200px; height: 200px; border-radius: 50%; margin-left: 45%; padding-top: 100px;" >
+            <img src="{{ url_for('static', filename='img/profile.jpeg') }}" class="m-0 border border-2 border-black" style="width: 100%; border-radius: 50% ">
         </div>
     </div>
     <div class="container" style="margin-top: 150px;"> 
-        <div class="d-flex align-items-center gap-4 text-center">
-            <h1>My interests :</h1>
-            {% for category in loggedin_user.interests%}
-            <p class="m-0">{{category['category_name']}}</p>
-            {%endfor%}
+        <div class="d-flex flex-column align-items-center gap-4 text-center">
+            <h1>My interests :</h1> 
+            <div class="d-flex gap-3">
+            {% for category in loggedin_user.interests%} 
+            <br>
+            <p class="m-0" style="background-color: rgb(238, 182, 182); font-size: large; 
+            border:2px solid black; border-radius: 5px; width: 75px;" >{{category['category_name']}}</p>
+            {%endfor%} 
+            </div>
         </div>
         <div class="mt-5 d-flex flex-column gap-4">
             <h1>My events :</h1>
@@ -52,11 +56,6 @@
             <div class="event">
                 <div class="event-header">
                     <h4>{{event.name}}</h4>
-                    <button class="more-options">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
                 </div>
                 <div style="display: flex; gap: 30px;">
                     <img src="{{ url_for('static', filename='img/' + event.photo) }}" id="img" alt="">
@@ -66,7 +65,7 @@
                             <h2>{{event.place}}</h2>
                         </div>
                         <div style="display: flex; gap: 20px; align-items: center;">
-                            <h1>Date :</h1>
+                            <h1>Date:</h1>
                             <h2>{{event.date}}</h2>
                         </div>
                         <div>
@@ -77,10 +76,11 @@
                 </div>
                 <div class="event-footer">
                     <div class="user">
-                        <img src="{{ url_for('static', filename='img/logo.PNG') }}" alt="">
+                        <img src="{{ url_for('static', filename='img/profile.jpeg') }}" alt="">
                         <h3>{{event.poster.first_name}}</h3>
                     </div>
                 </div> 
+                <h1>Invitations :</h1>
                 {% for friend in event.joined_users_with_names %}
                 {% if friend['status'] == 'Pending' %}
                         <h1 class="text-danger"> {{friend['username']}} </h1 class="text-danger">

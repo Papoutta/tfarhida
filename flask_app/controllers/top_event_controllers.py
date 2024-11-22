@@ -7,7 +7,8 @@ from flask_app.models.user_models import User
 ###################### top events ############################################
 @app.route("/top_events") 
 def top_events():
-    return render_template("/top_events.html") 
+    top_events= Event.get_top_events()
+    return render_template("top_events.html", top_events=top_events) 
 
 ####################### categorise########################################### 
 

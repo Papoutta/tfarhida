@@ -145,3 +145,25 @@ class Event:
         for row in results:
             all_users.append(row['users_id'])
         return all_users
+
+    @classmethod
+    def get_top_events(cls):
+        query="""
+            SELECT 
+                events.*,
+                COUNT(likes.user_id) AS like_count
+            FROM 
+                events 
+            LEFT JOIN 
+                likes  ON events.id = likes.event_id
+            GROUP BY 
+                events.id
+            ORDER BY 
+                like_count DESC
+            LIMIT 3;
+            """
+        results=connectToMySQL(DB).query_db(query) 
+        all_events=[]
+        for row in results:
+            all_events.append(cls(row))
+        return all_events

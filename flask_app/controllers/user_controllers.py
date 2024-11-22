@@ -78,7 +78,6 @@ def login():
         flash("invalid email/pasword")
         return redirect('/users') 
     session["user_id"]=user.id 
-    print("*****************", user.interests[0])
     id= user.interests[0]['category_id']
     if user.role == 0:
         return redirect(f"/home/{id}") 
