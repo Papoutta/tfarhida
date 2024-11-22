@@ -14,25 +14,26 @@
     <body>
         <div class="navbar">
             <div class="logo">
-                <img src="{{ url_for('static', filename='img/New_Logo.jpg') }}" alt="">
+                <img src="{{ url_for('static', filename='img/New_Logo.png') }}" alt="">
                 <h1>TFARHIDA</h1>
             </div>
             <div class="">
                 <ul>
-                    <li><a href="/home/15">Home</a></li>
+                    <li><a href="/home/{{loggedin_user.interests[0]['category_id']}}">Home</a></li>
                     <li><a href="/top_events"> Top events</a></li>
                     <li><a href="/categories"> Categories</a></li>
                     <li><a href="/contact_us">Contact</a></li>
                     <li><button class="create-button" id="bttt"><a href="/event">Create</a></button></li>
+                    <li><button class="create-button"><a href="/logout">Logout</a></button></li>
                 </ul>
             </div>
             <div class="right_icons">
-                <a href="/profile"><img src="../static/img/profile.jpeg" alt="Profile" class="profile-icon"></a>
+                <a href="/profile"><img src="{{ url_for('static', filename='img/'+loggedin_user.photo) }}" alt="Profile" class="profile-icon"></a>
             </div>
         </div>
         
     <form action="https://api.web3forms.com/submit" method="POST">       
-        <input type="hidden" name="access_key" value="aa1a0251-49ce-45e7-9297-ab9e85215f16">
+        <input type="hidden" name="access_key" value="309881ec-1d9f-443f-bff1-868d275e004e">
            <div id="contact_us" class="contact_us">
                <div class="con">
                    <h2>Contact Us</h2>

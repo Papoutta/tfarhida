@@ -15,12 +15,12 @@
 
     <div class="navbar">
         <div class="logo">
-            <img src="{{ url_for('static', filename='img/New_Logo.jpg') }}"  class="log"alt="">
+            <img src="{{ url_for('static', filename='img/New_Logo.png') }}"  class="log"alt="">
             <h1>TFARHIDA</h1>
         </div>
         <div class="">
             <ul>
-                <li><a href="/home/15">Home</a></li>
+                <li><a href="/home/{{loggedin_user.interests[0]['category_id']}}">Home</a></li>
                 <li><a href="/top_events"> Top Events</a></li>
                 <li><a href="/categories"> Categories</a></li>
                 <li><a href="/contact_us">Contact</a></li>
@@ -30,13 +30,13 @@
             </ul>
         </div>
         <div class="right_icons">          
-            <a href="/edite_your_information/{{session['user_id']}}"><img src="../static/img/profile.jpeg" alt="Profile" class="profile-icon"></a>
+            <a href="/edite_your_information/{{session['user_id']}}"><img src="{{ url_for('static', filename='img/'+loggedin_user.photo) }}" alt="Profile" class="profile-icon"></a>
         </div>
     </div>
 
-    <div style="background-color: rosybrown; height: 200px;"> 
+    <div style="background-color: rosybrown; height: 200px; margin-bottom: 10%;"> 
         <div style="width: 200px; height: 200px; border-radius: 50%; margin-left: 45%; padding-top: 100px;" >
-            <img src="{{ url_for('static', filename='img/profile.jpeg') }}" class="m-0 border border-2 border-black" style="width: 100%; border-radius: 50% ">
+            <img src="{{ url_for('static', filename='img/'+loggedin_user.photo) }}" class="m-0 border border-2 border-black" style="width: 100%; border-radius: 50% ">
         </div>
     </div>
     <div class="container" style="margin-top: 150px;"> 
@@ -76,31 +76,40 @@
                 </div>
                 <div class="event-footer">
                     <div class="user">
-                        <img src="{{ url_for('static', filename='img/profile.jpeg') }}" alt="">
+                        <img src="{{ url_for('static', filename='img/'+event.poster.photo) }}" alt="">
                         <h3>{{event.poster.first_name}}</h3>
                     </div>
                 </div> 
                 <h1>Invitations :</h1>
                 {% for friend in event.joined_users_with_names %}
-                {% if friend['status'] == 'Pending' %}
-                        <h1 class="text-danger"> {{friend['username']}} </h1 class="text-danger">
-                            <form action="/groups/deny_status" method="post">
-                                <input type="hidden" value="{{event.id}}" name="events_id">
-                                <input type="hidden" value="{{friend['users_id']}}" name="users_id">
-                                <button class="join-btn">Deny</button>
-                            </form>
-                            <form action="/groups/accept_status" method="post">
-                                <input type="hidden" value="{{event.id}}" name="events_id">
-                                <input type="hidden" value="{{friend['users_id']}}" name="users_id">
-                                <button class="join-btn">Accept</button>
-                            </form>
+                {% if friend['status'] == 'Pending' %} 
+                <div class="d-flex justify-content-between">
+
+                    <h3 class=""> {{friend['username']}} </h3>
+                    <div class="d-flex gap-3">
+
+                        <form action="/groups/accept_status" method="post">
+                            <input type="hidden" value="{{event.id}}" name="events_id">
+                            <input type="hidden" value="{{friend['users_id']}}" name="users_id">
+                            <button class="btn btn-dark">Accept</button>
+                        </form>
+                        <form action="/groups/deny_status" method="post" >
+                            <input type="hidden" value="{{event.id}}" name="events_id">
+                            <input type="hidden" value="{{friend['users_id']}}" name="users_id">
+                            <button class="btn btn-danger">Deny</button>
+                        </form>
+                    </div>
+                </div>
                             {% elif friend['status'] == 'Accepted' %}
-                            <h1 class="text-danger"> {{friend['username']}} </h1 class="text-danger">
+                            <div class="d-flex justify-content-between">
+
+                            <h3 class=""> {{friend['username']}} </h3>
                         <form action="/groups/deny_status" method="post">
                             <input type="hidden" value="{{event.id}}" name="events_id">
                             <input type="hidden" value="{{friend['users_id']}}" name="users_id">
-                            <button class="join-btn">Deny</button>
+                            <button class="btn btn-danger">Deny</button>
                         </form>
+                            </div>
                         {%endif%}
                 {%endfor%}
             </div>

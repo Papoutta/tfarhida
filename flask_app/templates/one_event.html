@@ -13,12 +13,12 @@
 <body>
     <div class="navbar">
         <div class="logo">
-            <img src="{{ url_for('static', filename='img/New_Logo.jpg') }}"  class="log"alt="">
+            <img src="{{ url_for('static', filename='img/New_Logo.png') }}"  class="log"alt="">
             <h1>TFARHIDA</h1>
         </div>
         <div class="">
             <ul>
-                <li><a href="/home/15">Home</a></li>
+                <li><a href="/home/{{loggedin_user.interests[0]['category_id']}}">Home</a></li>
                 <li><a href="/top_events"> Top Events</a></li>
                 <li><a href="/categories"> Categories</a></li>
                 <li><a href="/contact_us">Contact</a></li>
@@ -28,7 +28,7 @@
             </ul>
         </div>
         <div class="right_icons">          
-            <a href="/profile"><img src="../static/img/profile.jpeg" alt="Profile" class="profile-icon"></a>
+            <a href="/profile"><img src="{{ url_for('static', filename='img/'+loggedin_user.photo) }}" alt="Profile" class="profile-icon"></a>
         </div>
     </div>
 
@@ -67,12 +67,10 @@
                         <h2>{{event.date}}</h2>
                     </div>
                     <div>
-                        <h1>Additional Informations :</h1>
+                        <h1 class="h1h">Additional Information :</h1>
                         <p>{{event.additional_information}}</p>
                     </div>
-                    <div>
-                        <a href="/events/{{event.id}}" class="btn btn-primary rounded">See More</a>
-                    </div>
+                    
                 </div>
             </div>
             <div class="event-footer">
@@ -81,32 +79,32 @@
                         alt="{{event.poster.photo}}">
                     <h3>{{event.poster.first_name}}</h3>
                 </div>
-                <div class="likes">
+                <div class="likes mt-2" id="mt-3">
                     {% if event.poster.id != loggedin_user.id %}
                     {% if loggedin_user.id in event.joined_users %}
                     <form action="/groups/delete" method="post">
                         <input type="hidden" value="{{event.id}}" name="events_id">
-                        <button class="join-btn">Remove request</button>
+                        <button class="btn btn-dark">Remove request</button>
                     </form>
                     {% else %}
                     <form action="/groups/add" method="post">
                         <input type="hidden" value="{{event.id}}" name="events_id">
-                        <button class="join-btn">Ask to Join</button>
+                        <button class="btn btn-dark">Ask to Join</button>
                     </form>
                     {% endif %}
 
                     {% endif %}
                     <div class="comment">
                         <form action="/comment" method="post">
-                            <div class="form-floating d-flex"> 
+                            <div class=" d-flex"> 
                                 <input type="hidden" value="{{event.id}}" name="events_id">
-                                <textarea class="form-control" name="comment" placeholder="Leave a comment here" id="floatingTextarea"></textarea>  
-                                <button type="submit">ok</button>
+                                <input class="form-control " name="comment" placeholder="Leave a comment here* :)" id="floatingTextarea">
+                                <button type="submit" class="btn btn-dark">ok</button>
                                 
                             </div>
                         </form>
                         {%for comment in event.comment %} 
-                        <p>{{comment.comment}}</p> 
+                        <p class="m-2 p-2">{{comment.comment}}</p> 
                         {%endfor%}
                     </div>
                     <div class="mamou">
@@ -116,12 +114,12 @@
                         <form action="/likes/delete" method="post">
                             <input type="hidden" value="{{event.id}}" name="event_id">
                             <!-- <input type="submit" id="dont_likes"> -->
-                            <button type="submit" id="dont_likes"><img src="../static/img/liked-removebg-preview.png" alt=""></button>
+                            <button type="submit" id="dont_likes"><img src="../static/img/disliked-removebg-preview.png" alt=""></button>
                         </form>
                         {%else%}
                         <form action="/likes/add" method="post">
                             <input type="hidden" value="{{event.id}}" name="event_id">
-                            <button type="submit" class="like-button " id="dont_likes"><img src="../static/img/disliked-removebg-preview.png" alt=""></button>
+                            <button type="submit" class="like-button " id="dont_likes"><img src="../static/img/liked-removebg-preview.png" alt=""></button>
                         </form>
                         {%endif%}
                     </div>

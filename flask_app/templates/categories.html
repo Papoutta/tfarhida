@@ -11,12 +11,12 @@
 <body>
     <div class="navbar">
         <div class="logo">
-            <img src="{{ url_for('static', filename='img/New_Logo.jpg') }}"  class="log"alt="">
+            <img src="{{ url_for('static', filename='img/New_Logo.png') }}"  class="log"alt="">
             <h1>TFARHIDA</h1>
         </div>
         <div class="">
             <ul>
-                <li><a href="/home/15">Home</a></li>
+                <li><a href="/home/{{loggedin_user.interests[0]['category_id']}}">Home</a></li>
                 <li><a href="/top_events"> Top Events</a></li>
                 <li><a href="/categories"> Categories</a></li>
                 <li><a href="/contact_us">Contact</a></li>
@@ -26,7 +26,7 @@
             </ul>
         </div>
         <div class="right_icons">          
-            <a href="/profile"><img src="../static/img/profile.jpeg" alt="Profile" class="profile-icon"></a>
+            <a href="/profile"><img src="{{ url_for('static', filename='img/'+loggedin_user.photo) }}" alt="Profile" class="profile-icon"></a>
         </div>
     </div>
 
@@ -35,9 +35,10 @@
         {%for event in all_events%}
         <div class="event"> 
             <div class="user">
-                    <img src="{{ url_for('static', filename='img/logo.PNG') }}" alt="">
+                    <img src="{{ url_for('static', filename='img/'+event.poster.photo) }}" alt="">
                     <h3>{{event.poster.first_name}}</h3>
-                </div>
+            </div>
+
             <div class="event-header">
                 <h4>{{event.name}}</h4>
                
@@ -53,13 +54,16 @@
                         <h1 class="h1h">Date :</h1>
                         <h2 class="h2h">{{event.date}}</h2>
                     </div>
+                    <div>
+                        <a href="/events/{{event.id}}" class="btn  btn-dark rounded">See More</a>
+                    </div>
            
                 </div>
             </div>
             <div class="event-footer">
                 
                 <div class="likes">
-                    {% if event.poster.id == loggedin_user.id %}
+                    {% if event.poster.id != loggedin_user.id %}
                         {% if loggedin_user.id in event.joined_users %}
                         
                         <form action="/groups/delete" method="post">
@@ -74,25 +78,26 @@
                         {% endif %}
                         <div class="mamou">
                             <h4>{{event.num_likes['like_count']}}</h4> 
-                       
-                            <form action="/likes/add" method="post">
-                                <input type="hidden" value="{{event.id}}" name="event_id">
-                                <button type="submit" class="like-button " id="dont_likes"><img src="../static/img/disliked-removebg-preview.png" alt=""></button>
-    
-                            </form>
+                            {% if loggedin_user.id in event.like_users %}    
                             <form action="/likes/delete" method="post">
                                 <input type="hidden" value="{{event.id}}" name="event_id">
                                 <!-- <input type="submit" id="dont_likes"> -->
-                                <button type="submit" id="dont_likes"><img src="../static/img/liked-removebg-preview.png" alt=""></button>
+                                <button type="submit" id="dont_likes"><img src="../static/img/disliked-removebg-preview.png" alt=""></button>
                             </form>
+                            {% else %}
+                            <form action="/likes/add" method="post">
+                                <input type="hidden" value="{{event.id}}" name="event_id">
+                                <button type="submit" class="like-button " id="dont_likes"><img src="../static/img/liked-removebg-preview.png" alt=""></button>
+                            </form>
+                            {% endif %}
                         </div>
+                        {% endif %}
                 </div>
-                {% endif %}
             </div>
             </div> 
+            {%endfor%}
         </div>
-        {%endfor%}
-    </div>
+    <!-- </div> -->
 
 </body>
 </html>

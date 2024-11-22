@@ -8,7 +8,8 @@ from flask_app.models.user_models import User
 def admin_dashboard():
     all_categories=Category.get_all()
     all_users = User.get_all_users()
-    return render_template('admin_dashboard.html',all_categories=all_categories, all_users = all_users)
+    loggedin_user= User.get_user({"id":session['user_id'] })
+    return render_template('admin_dashboard.html',all_categories=all_categories, all_users = all_users, loggedin_user=loggedin_user)
 
 #Action route to create category
 @app.route('/admin/create_category', methods = ['POST'])

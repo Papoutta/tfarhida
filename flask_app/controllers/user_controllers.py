@@ -87,7 +87,8 @@ def login():
 
 @app.route("/contact_us") 
 def contact_us():
-    return render_template("contact.html")
+    loggedin_user= User.get_user({"id":session['user_id'] })
+    return render_template("contact.html", loggedin_user=loggedin_user)
 
 
 @app.route("/logout") 

@@ -8,7 +8,9 @@ from flask_app.models.user_models import User
 @app.route("/top_events") 
 def top_events():
     top_events= Event.get_top_events()
-    return render_template("top_events.html", top_events=top_events) 
+    loggedin_user= User.get_user({"id":session['user_id'] })
+
+    return render_template("top_events.html", top_events=top_events, loggedin_user =loggedin_user ) 
 
 ####################### categorise########################################### 
 
